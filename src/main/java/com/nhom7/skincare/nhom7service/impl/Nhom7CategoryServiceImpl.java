@@ -1,6 +1,7 @@
 package com.nhom7.skincare.nhom7service.impl;
 
 import com.nhom7.skincare.nhom7entity.Nhom7Category;
+import com.nhom7.skincare.nhom7exception.Nhom7ResourceNotFoundException;
 import com.nhom7.skincare.nhom7repository.Nhom7CategoryRepository;
 import com.nhom7.skincare.nhom7service.Nhom7CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,18 +33,17 @@ public class Nhom7CategoryServiceImpl implements Nhom7CategoryService {
 
     @Override
     public Nhom7Category updateCategory(Long id, Nhom7Category category) {
-        Optional<Nhom7Category> existingCategory = nhom7CategoryRepository.findById(id);
+        Nhom7Category existingCategory = nhom7CategoryRepository.findById(id)
+                .orElseThrow(() ->
+                        new Nhom7ResourceNotFoundException(
+                                "Category not found with id: " + id
+                        ));
 
-        if (existingCategory.isPresent()) {
-            Nhom7Category updatedCategory = existingCategory.get();
-            updatedCategory.setName(category.getName());
-            updatedCategory.setDescription(category.getDescription());
-            updatedCategory.setStatus(category.getStatus());
+        existingCategory.setName(category.getName());
+        existingCategory.setDescription(category.getDescription());
+        existingCategory.setStatus(category.getStatus());
 
-            return nhom7CategoryRepository.save(updatedCategory);
-        }
-
-        return null;
+        return nhom7CategoryRepository.save(existingCategory);
     }
 
     @Override

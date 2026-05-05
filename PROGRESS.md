@@ -91,7 +91,49 @@ Table prefix: nhom7
 [✔] Create Nhom7CartItemServiceImpl
 [✔] Create Nhom7CartItemController
 [✔] Create Nhom7VoucherService
----
+[✔] Create Nhom7VoucherServiceImpl
+[✔] Create Nhom7VoucherController
+[✔] Create Nhom7OrderService
+[✔] Create Nhom7OrderServiceImpl
+[✔] Create Nhom7OrderController
+[✔] Create Nhom7ReviewService
+[✔] Create Nhom7ReviewServiceImpl
+[✔] Create Nhom7ReviewController
+[✔] Create Nhom7UserDTO
+[✔] Create Nhom7UserMapper
+[✔] Refactor Nhom7UserController with DTO
+[✔] Create Nhom7ResourceNotFoundException
+[✔] Create Nhom7GlobalExceptionHandler
+[✔] Refactor Nhom7UserServiceImpl with Exception
+[✔] Refactor Nhom7CategoryServiceImpl with Exception
+[✔] Refactor Nhom7ProductServiceImpl with Exception
+[✔] Refactor Nhom7VoucherServiceImpl with Exception
+[✔] Refactor Nhom7OrderServiceImpl with Exception
+[✔] Add Validation for Nhom7UserDTO
+[✔] Add @Valid in Nhom7UserController
+[✔] Handle Validation Exception
+[✔] Create Nhom7SecurityConfig
+Current Step: Create Custom User Authentication
+Next Step:
+- Create Nhom7UserDetailService
+- Connect User database with Spring Security
+- Login with database user
+[✔] Create Nhom7UserDetailService
+Current Step: Connect SecurityConfig with UserDetailsService
+[✔] Connect SecurityConfig with UserDetailsService
+Current Step: Encrypt User Password
+[✔] Encrypt password when create user
+Current Step: Create Auth API (Login/Register)
+[✔] Create Nhom7AuthController
+Current Step: Allow Register API in SecurityConfig
+[✔] Permit Auth API in SecurityConfig
+Current Step: Final Testing + Cleanup
+[✔] Add CORS Configuration
+Current Step: Seed Sample Data
+  [✔] Create Data Seeder
+  Current Step: Test Product API
+
+
 
 ## CURRENT STEP
 

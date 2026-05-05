@@ -1,6 +1,7 @@
 package com.nhom7.skincare.nhom7service.impl;
 
 import com.nhom7.skincare.nhom7entity.Nhom7Product;
+import com.nhom7.skincare.nhom7exception.Nhom7ResourceNotFoundException;
 import com.nhom7.skincare.nhom7repository.Nhom7ProductRepository;
 import com.nhom7.skincare.nhom7service.Nhom7ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,24 +33,23 @@ public class Nhom7ProductServiceImpl implements Nhom7ProductService {
 
     @Override
     public Nhom7Product updateProduct(Long id, Nhom7Product product) {
-        Optional<Nhom7Product> existingProduct = nhom7ProductRepository.findById(id);
+        Nhom7Product existingProduct = nhom7ProductRepository.findById(id)
+                .orElseThrow(() ->
+                        new Nhom7ResourceNotFoundException(
+                                "Product not found with id: " + id
+                        ));
 
-        if (existingProduct.isPresent()) {
-            Nhom7Product updatedProduct = existingProduct.get();
-            updatedProduct.setName(product.getName());
-            updatedProduct.setIngredients(product.getIngredients());
-            updatedProduct.setPrice(product.getPrice());
-            updatedProduct.setStock(product.getStock());
-            updatedProduct.setImage(product.getImage());
-            updatedProduct.setDescription(product.getDescription());
-            updatedProduct.setStatus(product.getStatus());
-            updatedProduct.setCategory(product.getCategory());
-            updatedProduct.setBrand(product.getBrand());
+        existingProduct.setName(product.getName());
+        existingProduct.setIngredients(product.getIngredients());
+        existingProduct.setPrice(product.getPrice());
+        existingProduct.setStock(product.getStock());
+        existingProduct.setImage(product.getImage());
+        existingProduct.setDescription(product.getDescription());
+        existingProduct.setStatus(product.getStatus());
+        existingProduct.setCategory(product.getCategory());
+        existingProduct.setBrand(product.getBrand());
 
-            return nhom7ProductRepository.save(updatedProduct);
-        }
-
-        return null;
+        return nhom7ProductRepository.save(existingProduct);
     }
 
     @Override

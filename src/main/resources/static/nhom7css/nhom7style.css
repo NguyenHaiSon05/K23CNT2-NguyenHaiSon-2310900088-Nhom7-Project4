@@ -1,0 +1,21 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+#nhom7-product-list {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.nhom7-product-card {
+    width: 250px;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.nhom7-product-card img {
+    width: 100%;
+}

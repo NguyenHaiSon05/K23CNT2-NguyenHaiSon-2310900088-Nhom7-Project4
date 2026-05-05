@@ -55,7 +55,42 @@ Table prefix: nhom7
 [✔] Create Nhom7Role enum
 [✔] Create Nhom7UserRepository
 [✔] Create Nhom7Category entity
-
+[✔] Create Nhom7CategoryRepository
+[✔] Create Nhom7Brand entity
+[✔] Create Nhom7BrandRepository
+[✔] Create Nhom7Product entity
+[✔] Create Nhom7ProductRepository
+[✔] Create Nhom7Cart entity
+[✔] Create Nhom7CartItem entity
+[✔] Create Nhom7Voucher entity
+[✔] Create Nhom7Order entity
+[✔] Create Nhom7OrderDetail entity
+[✔] Create Nhom7Review entity
+[✔] Create Nhom7CartRepository
+[✔] Create Nhom7CartItemRepository
+[✔] Create Nhom7VoucherRepository
+[✔] Create Nhom7OrderRepository
+[✔] Create Nhom7OrderDetailRepository
+[✔] Create Nhom7ReviewRepository
+[✔] Create Nhom7UserService
+[✔] Create Nhom7UserServiceImpl
+[✔] Create Nhom7UserController
+[✔] Create Nhom7CategoryService
+[✔] Create Nhom7CategoryServiceImpl
+[✔] Create Nhom7CategoryController
+[✔] Create Nhom7BrandService
+[✔] Create Nhom7BrandServiceImpl
+[✔] Create Nhom7BrandController
+[✔] Create Nhom7ProductService
+[✔] Create Nhom7ProductServiceImpl
+[✔] Create Nhom7ProductController
+[✔] Create Nhom7CartService
+[✔] Create Nhom7CartServiceImpl
+[✔] Create Nhom7CartController
+[✔] Create Nhom7CartItemService
+[✔] Create Nhom7CartItemServiceImpl
+[✔] Create Nhom7CartItemController
+[✔] Create Nhom7VoucherService
 ---
 
 ## CURRENT STEP

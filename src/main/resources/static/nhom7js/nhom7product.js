@@ -21,6 +21,10 @@ function nhom7RenderProducts(products) {
                 <img src="/nhom7images/${product.image}" alt="${product.name}">
                 <h3>${product.name}</h3>
                 <p>${product.price} VND</p>
+
+                <a href="/nhom7product-detail.html?id=${product.id}">
+                    Xem chi tiết
+                </a>
             </div>
         `;
     });

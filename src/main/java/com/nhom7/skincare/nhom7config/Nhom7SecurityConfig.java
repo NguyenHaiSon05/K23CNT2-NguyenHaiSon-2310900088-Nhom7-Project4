@@ -30,7 +30,9 @@ public class Nhom7SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
+                                "/",
                                 "/nhom7index.html",
+                                "/nhom7product-detail.html",
                                 "/nhom7css/**",
                                 "/nhom7js/**",
                                 "/nhom7images/**"

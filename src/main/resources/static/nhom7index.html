@@ -4,22 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nhom7 Skincare</title>
-
     <link rel="stylesheet" href="/nhom7css/nhom7style.css">
 </head>
 <body>
 
-<header>
-    <h1>Nhom7 Skincare Shop</h1>
+<header class="nhom7-header">
+    <div class="nhom7-logo">
+        Nhom7 Skincare
+    </div>
+
+    <nav class="nhom7-nav">
+        <a href="/">Trang chủ</a>
+        <a href="#">Sản phẩm</a>
+        <a href="#">Giỏ hàng</a>
+        <a href="#">Đăng nhập</a>
+    </nav>
 </header>
 
-<main>
-    <section>
-        <h2>Danh sách sản phẩm</h2>
+<section class="nhom7-banner">
+    <h1>Chăm sóc làn da của bạn</h1>
+    <p>Sản phẩm chính hãng - Chất lượng cao</p>
+</section>
 
-        <div id="nhom7-product-list"></div>
-    </section>
+<main class="nhom7-container">
+    <h2>Danh sách sản phẩm</h2>
+
+    <div id="nhom7-product-list"></div>
 </main>
+
+<footer class="nhom7-footer">
+    <p>Nhom7 Skincare © 2026</p>
+</footer>
 
 <script src="/nhom7js/nhom7api.js"></script>
 <script src="/nhom7js/nhom7product.js"></script>

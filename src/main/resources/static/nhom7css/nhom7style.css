@@ -81,3 +81,40 @@ body {
     padding: 20px;
     margin-top: 50px;
 }
+.nhom7-detail-container {
+    padding: 50px;
+}
+
+.nhom7-detail-card {
+    display: flex;
+    gap: 50px;
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.nhom7-detail-image img {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+}
+
+.nhom7-detail-info {
+    flex: 1;
+}
+
+.nhom7-detail-info h1 {
+    margin-bottom: 20px;
+}
+
+.nhom7-detail-info p {
+    margin-bottom: 15px;
+}
+
+.nhom7-detail-info button {
+    padding: 15px 25px;
+    border: none;
+    background: pink;
+    cursor: pointer;
+    border-radius: 5px;
+}

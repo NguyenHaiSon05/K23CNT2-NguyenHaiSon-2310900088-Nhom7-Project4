@@ -31,8 +31,11 @@ public class Nhom7SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(
                                 "/",
+                                "/nhom7login.html",
+                                "/nhom7register.html",
                                 "/nhom7index.html",
                                 "/nhom7product-detail.html",
+                                "/nhom7cart.html",
                                 "/nhom7css/**",
                                 "/nhom7js/**",
                                 "/nhom7images/**"

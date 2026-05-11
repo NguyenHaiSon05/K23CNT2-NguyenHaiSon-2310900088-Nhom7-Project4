@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Đăng nhập</title>
+
+    <link rel="stylesheet" href="/nhom7css/nhom7style.css">
+</head>
+<body>
+
+<div class="nhom7-auth-container">
+
+    <form class="nhom7-auth-form">
+
+        <h1>Đăng nhập</h1>
+
+        <input
+                type="email"
+                id="nhom7-email"
+                placeholder="Email"
+        >
+
+        <input
+                type="password"
+                id="nhom7-password"
+                placeholder="Mật khẩu"
+        >
+
+        <button
+                type="button"
+                onclick="nhom7Login()"
+        >
+            Đăng nhập
+        </button>
+
+        <p>
+            Chưa có tài khoản?
+
+            <a href="/nhom7register.html">
+                Đăng ký
+            </a>
+        </p>
+
+    </form>
+
+</div>
+
+<script src="/nhom7js/nhom7api.js"></script>
+<script src="/nhom7js/nhom7login.js"></script>
+
+</body>
+</html>

@@ -43,6 +43,7 @@ if(username){
 function nhom7Logout(){
 
     localStorage.removeItem("nhom7_username");
+    localStorage.removeItem("nhom7-cart");
 
     window.location.href = "/";
 }

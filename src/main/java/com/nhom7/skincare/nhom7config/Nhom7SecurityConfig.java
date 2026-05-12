@@ -36,6 +36,7 @@ public class Nhom7SecurityConfig {
                                 "/nhom7index.html",
                                 "/nhom7product-detail.html",
                                 "/nhom7cart.html",
+                                "/nhom7admin.html",
                                 "/nhom7css/**",
                                 "/nhom7js/**",
                                 "/nhom7images/**"
@@ -46,8 +47,7 @@ public class Nhom7SecurityConfig {
                         .requestMatchers("/api/brands/**").permitAll()
                         .anyRequest().authenticated()
                 )
-                .userDetailsService(nhom7UserDetailService)
-                .httpBasic(Customizer.withDefaults());
+                .userDetailsService(nhom7UserDetailService);
 
         return http.build();
     }

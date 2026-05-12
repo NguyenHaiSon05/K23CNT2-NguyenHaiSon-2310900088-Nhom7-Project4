@@ -1,7 +1,9 @@
+let nhom7AllProducts = [];
 async function nhom7LoadProducts() {
     try {
         const response = await fetch(`${NHOM7_BASE_URL}/products`);
         const products = await response.json();
+        nhom7AllProducts = products;
 
         nhom7RenderProducts(products);
     } catch (error) {
@@ -81,6 +83,16 @@ function nhom7RenderProducts(products) {
     });
 
     container.innerHTML = html;
+}
+function nhom7FilterCategory(categoryName){
+
+    const filteredProducts =
+        nhom7AllProducts.filter(product => {
+
+            return product.category.name === categoryName;
+        });
+
+    nhom7RenderProducts(filteredProducts);
 }
 
 nhom7LoadProducts();

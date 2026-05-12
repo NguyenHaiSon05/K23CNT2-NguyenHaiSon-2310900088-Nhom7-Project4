@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+
+    <link rel="stylesheet" href="/nhom7css/nhom7style.css">
+</head>
+<body>
+
+<div class="nhom7-admin-layout">
+
+    <!-- SIDEBAR -->
+
+    <aside class="nhom7-admin-sidebar">
+
+        <h2>ADMIN</h2>
+
+        <ul>
+
+            <li>
+                Dashboard
+            </li>
+
+            <li>
+                Quản lý sản phẩm
+            </li>
+
+            <li>
+                Quản lý danh mục
+            </li>
+
+            <li>
+                Quản lý người dùng
+            </li>
+
+            <li>
+                Đơn hàng
+            </li>
+
+        </ul>
+
+    </aside>
+
+    <!-- MAIN -->
+
+    <main class="nhom7-admin-main">
+
+        <div class="nhom7-admin-top">
+
+            <h1>
+                Dashboard
+            </h1>
+
+            <button>
+                Đăng xuất
+            </button>
+
+        </div>
+
+        <!-- CARD -->
+
+        <div class="nhom7-admin-cards">
+
+            <div class="nhom7-admin-card">
+                <h3>12</h3>
+                <p>Sản phẩm</p>
+            </div>
+
+            <div class="nhom7-admin-card">
+                <h3>6</h3>
+                <p>Danh mục</p>
+            </div>
+
+            <div class="nhom7-admin-card">
+                <h3>25</h3>
+                <p>Người dùng</p>
+            </div>
+
+            <div class="nhom7-admin-card">
+                <h3>8</h3>
+                <p>Đơn hàng</p>
+            </div>
+
+        </div>
+
+        <!-- TABLE -->
+
+        <div class="nhom7-admin-table">
+
+            <h2>Danh sách sản phẩm</h2>
+
+            <table>
+
+                <thead>
+
+                <tr>
+                    <th>ID</th>
+                    <th>Ảnh</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Giá</th>
+                    <th>Tồn kho</th>
+                    <th>Action</th>
+                </tr>
+
+                </thead>
+
+                <tbody id="nhom7-admin-product-list">
+
+                <tr>
+
+                    <td>1</td>
+
+                    <td>
+                        <img
+                                src="/nhom7images/products/cerave.png"
+                                width="60"
+                        >
+                    </td>
+
+                    <td>Sữa rửa mặt Cerave</td>
+
+                    <td>250000đ</td>
+
+                    <td>50</td>
+
+                    <td>
+
+                        <button class="nhom7-edit-btn">
+                            Sửa
+                        </button>
+
+                        <button class="nhom7-delete-btn">
+                            Xóa
+                        </button>
+
+                    </td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </main>
+
+</div>
+
+</body>
+</html>

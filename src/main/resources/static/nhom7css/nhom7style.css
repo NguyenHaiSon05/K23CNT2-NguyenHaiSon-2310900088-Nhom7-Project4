@@ -696,3 +696,127 @@ body{
     color:#ff4f87;
     margin-top:40px;
 }
+/* ================= ADMIN ================= */
+
+.nhom7-admin-layout{
+    display:flex;
+    min-height:100vh;
+}
+
+.nhom7-admin-sidebar{
+    width:260px;
+    background:#ff4f87;
+    color:white;
+    padding:30px 20px;
+}
+
+.nhom7-admin-sidebar h2{
+    font-size:32px;
+    margin-bottom:40px;
+}
+
+.nhom7-admin-sidebar ul{
+    list-style:none;
+}
+
+.nhom7-admin-sidebar li{
+    padding:18px;
+    margin-bottom:10px;
+    border-radius:10px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.nhom7-admin-sidebar li:hover{
+    background:rgba(255,255,255,0.2);
+}
+
+.nhom7-admin-main{
+    flex:1;
+    padding:40px;
+}
+
+.nhom7-admin-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:40px;
+}
+
+.nhom7-admin-top h1{
+    font-size:42px;
+}
+
+.nhom7-admin-top button{
+    padding:12px 22px;
+    border:none;
+    background:#ff4f87;
+    color:white;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+.nhom7-admin-cards{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:25px;
+    margin-bottom:50px;
+}
+
+.nhom7-admin-card{
+    background:white;
+    padding:30px;
+    border-radius:18px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.08);
+}
+
+.nhom7-admin-card h3{
+    font-size:42px;
+    color:#ff4f87;
+    margin-bottom:10px;
+}
+
+.nhom7-admin-card p{
+    font-size:18px;
+}
+
+.nhom7-admin-table{
+    background:white;
+    padding:30px;
+    border-radius:18px;
+    box-shadow:0 4px 15px rgba(0,0,0,0.08);
+}
+
+.nhom7-admin-table h2{
+    margin-bottom:25px;
+}
+
+.nhom7-admin-table table{
+    width:100%;
+    border-collapse:collapse;
+}
+
+.nhom7-admin-table th,
+.nhom7-admin-table td{
+    padding:16px;
+    border-bottom:1px solid #eee;
+    text-align:left;
+}
+
+.nhom7-edit-btn{
+    background:#4caf50;
+    color:white;
+    border:none;
+    padding:10px 18px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+.nhom7-delete-btn{
+    background:red;
+    color:white;
+    border:none;
+    padding:10px 18px;
+    border-radius:8px;
+    cursor:pointer;
+}

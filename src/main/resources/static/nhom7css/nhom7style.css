@@ -492,3 +492,131 @@ body{
 
     border-radius: 15px;
 }
+
+#nhom7-product-list{
+    display:flex;
+    gap:25px;
+    flex-wrap:wrap;
+    margin-top:40px;
+}
+
+.nhom7-product-card{
+    width:260px;
+    background:white;
+    border-radius:18px;
+    overflow:hidden;
+    transition:0.3s;
+    box-shadow:0 4px 15px rgba(0,0,0,0.08);
+}
+
+.nhom7-product-card:hover{
+    transform:translateY(-8px);
+}
+
+.nhom7-product-image{
+    position:relative;
+    height:280px;
+    overflow:hidden;
+}
+
+.nhom7-product-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.nhom7-sale-badge{
+    position:absolute;
+    top:15px;
+    left:15px;
+
+    background:#ffcc00;
+    color:#333;
+
+    width:55px;
+    height:55px;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-weight:bold;
+}
+
+.nhom7-product-info{
+    padding:20px;
+}
+
+.nhom7-brand{
+    font-size:13px;
+    color:#888;
+    font-weight:bold;
+    letter-spacing:1px;
+}
+
+.nhom7-product-info h3{
+    margin:10px 0;
+    font-size:24px;
+    line-height:1.4;
+    height:70px;
+}
+
+.nhom7-price-box{
+    margin:15px 0;
+}
+
+.nhom7-price{
+    color:#ff4f87;
+    font-size:32px;
+    font-weight:bold;
+}
+
+.nhom7-old-price{
+    margin-left:10px;
+    color:#999;
+    text-decoration:line-through;
+    font-size:18px;
+}
+
+.nhom7-freeship{
+    color:#ff00aa;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+.nhom7-product-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.nhom7-sold{
+    font-size:14px;
+}
+
+.nhom7-product-bottom a{
+    width:45px;
+    height:45px;
+
+    background:#ff4f87;
+    color:white;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-decoration:none;
+
+    font-size:32px;
+    font-weight:bold;
+
+    transition:0.3s;
+}
+
+.nhom7-product-bottom a:hover{
+    background:#ff0066;
+}

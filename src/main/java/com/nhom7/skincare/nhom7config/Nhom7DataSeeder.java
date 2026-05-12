@@ -43,7 +43,7 @@ public class Nhom7DataSeeder implements CommandLineRunner {
             Nhom7Brand cerave =
                     Nhom7Brand.builder()
                             .name("Cerave")
-                            .logo("cerave.png")
+                            .logo("products/cerave.png")
                             .status(true)
                             .build();
 
@@ -55,7 +55,7 @@ public class Nhom7DataSeeder implements CommandLineRunner {
                             .ingredients("Ceramide, Niacinamide")
                             .price(new BigDecimal("250000"))
                             .stock(50)
-                            .image("cerave-cleanser.jpg")
+                            .image("products/cerave.png")
                             .description("Cleanser for oily skin")
                             .status(true)
                             .category(cleanser)

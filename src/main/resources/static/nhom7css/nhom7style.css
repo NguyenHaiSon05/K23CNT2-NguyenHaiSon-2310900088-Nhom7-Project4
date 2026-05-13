@@ -820,3 +820,53 @@ body{
     border-radius:8px;
     cursor:pointer;
 }
+.nhom7-admin-form{
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.nhom7-admin-form h2{
+    margin-bottom: 20px;
+}
+
+.nhom7-admin-form input,
+.nhom7-admin-form textarea{
+
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 15px;
+
+    border: 1px solid #ddd;
+    border-radius: 10px;
+
+    font-size: 15px;
+}
+
+.nhom7-admin-form textarea{
+    height: 120px;
+    resize: none;
+}
+
+.nhom7-admin-form button{
+
+    background: #ff4f8b;
+    color: white;
+
+    border: none;
+
+    padding: 14px 25px;
+
+    border-radius: 10px;
+
+    cursor: pointer;
+
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.nhom7-admin-form button:hover{
+    background: #ff2f75;
+}

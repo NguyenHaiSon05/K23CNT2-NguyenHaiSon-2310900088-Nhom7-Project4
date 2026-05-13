@@ -15,7 +15,9 @@
 
     <aside class="nhom7-admin-sidebar">
 
-        <h2>ADMIN</h2>
+        <h2> ADMIN
+        Skincare Perfect
+        </h2>
 
         <ul>
 
@@ -86,7 +88,54 @@
         </div>
 
         <!-- TABLE -->
+        <div class="nhom7-admin-form">
 
+            <h2>Thêm sản phẩm</h2>
+
+            <input
+                    type="text"
+                    id="nhom7-name"
+                    placeholder="Tên sản phẩm"
+            >
+
+            <input
+                    type="number"
+                    id="nhom7-price"
+                    placeholder="Giá sản phẩm"
+            >
+
+            <input
+                    type="number"
+                    id="nhom7-stock"
+                    placeholder="Số lượng tồn kho"
+            >
+
+            <input
+                    type="file"
+                    id="nhom7-image"
+                    accept="image/*"
+            >
+
+            <img
+                    id="nhom7-preview-image"
+                    style="
+                    width:120px;
+                    margin-top:10px;
+                    border-radius:10px;
+                    display:none;
+                "
+            >
+
+            <textarea
+                    id="nhom7-description"
+                    placeholder="Mô tả sản phẩm"
+            ></textarea>
+
+            <button onclick="nhom7AddProduct()">
+                Thêm sản phẩm
+            </button>
+
+        </div>
         <div class="nhom7-admin-table">
 
             <h2>Danh sách sản phẩm</h2>
@@ -148,6 +197,6 @@
     </main>
 
 </div>
-
+<script src="/nhom7js/nhom7admin.js"></script>
 </body>
 </html>

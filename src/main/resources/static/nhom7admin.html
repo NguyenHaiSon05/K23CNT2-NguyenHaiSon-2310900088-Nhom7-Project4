@@ -1,202 +1,287 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
-
-    <link rel="stylesheet" href="/nhom7css/nhom7style.css">
+    <title>Admin – Skincare Perfect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/nhom7css/nhom7admin.css">
 </head>
 <body>
 
-<div class="nhom7-admin-layout">
+<div class="sp-layout">
 
     <!-- SIDEBAR -->
+    <aside class="sp-sidebar">
+        <div class="sp-sidebar-brand">
+            <span class="sp-brand-icon">✦</span>
+            <div>
+                <div class="sp-brand-title">Skincare</div>
+                <div class="sp-brand-sub">Perfect Admin</div>
+            </div>
+        </div>
 
-    <aside class="nhom7-admin-sidebar">
+        <nav class="sp-nav">
+            <a class="sp-nav-item active" data-section="dashboard" onclick="nhom7ShowSection('dashboard')">
+                <span class="sp-nav-icon">⊞</span> Dashboard
+            </a>
+            <a class="sp-nav-item" data-section="products" onclick="nhom7ShowSection('products')">
+                <span class="sp-nav-icon">◈</span> Sản phẩm
+            </a>
+            <a class="sp-nav-item" data-section="categories" onclick="nhom7ShowSection('categories')">
+                <span class="sp-nav-icon">◉</span> Danh mục
+            </a>
+            <a class="sp-nav-item" data-section="users" onclick="nhom7ShowSection('users')">
+                <span class="sp-nav-icon">◎</span> Người dùng
+            </a>
+            <a class="sp-nav-item" data-section="orders" onclick="nhom7ShowSection('orders')">
+                <span class="sp-nav-icon">◇</span> Đơn hàng
+            </a>
+        </nav>
 
-        <h2> ADMIN
-        Skincare Perfect
-        </h2>
-
-        <ul>
-
-            <li>
-                Dashboard
-            </li>
-
-            <li>
-                Quản lý sản phẩm
-            </li>
-
-            <li>
-                Quản lý danh mục
-            </li>
-
-            <li>
-                Quản lý người dùng
-            </li>
-
-            <li>
-                Đơn hàng
-            </li>
-
-        </ul>
-
+        <button class="sp-logout" onclick="nhom7Logout()">
+            ⏻ Đăng xuất
+        </button>
     </aside>
 
     <!-- MAIN -->
+    <main class="sp-main">
 
-    <main class="nhom7-admin-main">
-
-        <div class="nhom7-admin-top">
-
-            <h1>
-                Dashboard
-            </h1>
-
-            <button>
-                Đăng xuất
-            </button>
-
+        <!-- TOPBAR -->
+        <div class="sp-topbar">
+            <div>
+                <div class="sp-page-label">Bảng điều khiển</div>
+                <h1 class="sp-page-title" id="sp-page-heading">Dashboard</h1>
+            </div>
+            <div class="sp-topbar-right">
+                <div class="sp-avatar">A</div>
+            </div>
         </div>
 
-        <!-- CARD -->
+        <!-- SECTION: DASHBOARD -->
+        <section id="section-dashboard" class="sp-section active">
 
-        <div class="nhom7-admin-cards">
-
-            <div class="nhom7-admin-card">
-                <h3>12</h3>
-                <p>Sản phẩm</p>
+            <div class="sp-cards">
+                <div class="sp-card sp-card--pink">
+                    <div class="sp-card-icon">◈</div>
+                    <div class="sp-card-num" id="card-products">12</div>
+                    <div class="sp-card-label">Sản phẩm</div>
+                    <div class="sp-card-bar"></div>
+                </div>
+                <div class="sp-card sp-card--rose">
+                    <div class="sp-card-icon">◉</div>
+                    <div class="sp-card-num" id="card-categories">6</div>
+                    <div class="sp-card-label">Danh mục</div>
+                    <div class="sp-card-bar"></div>
+                </div>
+                <div class="sp-card sp-card--fuchsia">
+                    <div class="sp-card-icon">◎</div>
+                    <div class="sp-card-num" id="card-users">25</div>
+                    <div class="sp-card-label">Người dùng</div>
+                    <div class="sp-card-bar"></div>
+                </div>
+                <div class="sp-card sp-card--magenta">
+                    <div class="sp-card-icon">◇</div>
+                    <div class="sp-card-num" id="card-orders">8</div>
+                    <div class="sp-card-label">Đơn hàng</div>
+                    <div class="sp-card-bar"></div>
+                </div>
             </div>
 
-            <div class="nhom7-admin-card">
-                <h3>6</h3>
-                <p>Danh mục</p>
+            <div class="sp-dashboard-bottom">
+                <div class="sp-recent-box">
+                    <div class="sp-box-header">
+                        <h3>Sản phẩm mới nhất</h3>
+                        <a onclick="nhom7ShowSection('products')">Xem tất cả →</a>
+                    </div>
+                    <table class="sp-table">
+                        <thead>
+                        <tr><th>Ảnh</th><th>Tên</th><th>Giá</th><th>Tồn kho</th></tr>
+                        </thead>
+                        <tbody id="sp-recent-products"></tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: PRODUCTS -->
+        <section id="section-products" class="sp-section">
+
+            <!-- ADD FORM -->
+            <div class="sp-panel" id="sp-form-panel">
+                <div class="sp-panel-header">
+                    <h2 id="sp-form-title">✦ Thêm sản phẩm mới</h2>
+                    <button class="sp-btn-icon" onclick="nhom7ToggleForm()" id="sp-toggle-form-btn">Thu gọn ↑</button>
+                </div>
+
+                <div class="sp-form-grid" id="sp-form-body">
+                    <div class="sp-form-left">
+                        <div class="sp-field">
+                            <label>Tên sản phẩm</label>
+                            <input type="text" id="nhom7-name" placeholder="VD: Kem dưỡng ẩm Cerave...">
+                        </div>
+                        <div class="sp-field-row">
+                            <div class="sp-field">
+                                <label>Giá (đ)</label>
+                                <input type="number" id="nhom7-price" placeholder="250000">
+                            </div>
+                            <div class="sp-field">
+                                <label>Tồn kho</label>
+                                <input type="number" id="nhom7-stock" placeholder="100">
+                            </div>
+                        </div>
+                        <div class="sp-field-row">
+                            <div class="sp-field">
+                                <label>Danh mục</label>
+                                <select id="category">
+                                    <option value="">Chọn danh mục</option>
+                                    <option value="1">Sữa rửa mặt</option>
+                                    <option value="2">Serum</option>
+                                    <option value="3">Kem dưỡng</option>
+                                    <option value="4">Kem chống nắng</option>
+                                    <option value="5">Toner</option>
+                                    <option value="6">Tẩy trang</option>
+                                </select>
+                            </div>
+                            <div class="sp-field">
+                                <label>Thương hiệu</label>
+                                <select id="brand">
+                                    <option value="">Chọn thương hiệu</option>
+                                    <option value="1">Cerave</option>
+                                    <option value="2">La Roche Posay</option>
+                                    <option value="3">The Ordinary</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="sp-field">
+                            <label>Mô tả sản phẩm</label>
+                            <textarea id="nhom7-description" placeholder="Mô tả chi tiết về sản phẩm..."></textarea>
+                        </div>
+                        <div class="sp-form-actions">
+                            <button class="sp-btn-primary" onclick="nhom7AddProduct()" id="sp-submit-btn">
+                                + Thêm sản phẩm
+                            </button>
+                            <button class="sp-btn-ghost" onclick="nhom7ResetForm()">Hủy</button>
+                        </div>
+                    </div>
+
+                    <div class="sp-form-right">
+                        <div class="sp-upload-area" onclick="document.getElementById('nhom7-image').click()">
+                            <div class="sp-upload-icon">⊕</div>
+                            <div class="sp-upload-text">Nhấn để chọn ảnh</div>
+                            <div class="sp-upload-hint">PNG, JPG, WEBP • Tối đa 5MB</div>
+                            <input type="file" id="nhom7-image" accept="image/*" style="display:none">
+                        </div>
+                        <div class="sp-preview-wrap" id="sp-preview-wrap" style="display:none">
+                            <img id="nhom7-preview-image" alt="Preview">
+                            <button class="sp-preview-remove" onclick="nhom7RemoveImage()">✕</button>
+                        </div>
+                    </div>
+                </div>
             </div>
 
-            <div class="nhom7-admin-card">
-                <h3>25</h3>
-                <p>Người dùng</p>
+            <!-- PRODUCT TABLE -->
+            <div class="sp-panel sp-panel--table">
+                <div class="sp-panel-header">
+                    <h2>Danh sách sản phẩm</h2>
+                    <div class="sp-search-wrap">
+                        <input type="text" id="sp-search" placeholder="🔍 Tìm sản phẩm..." oninput="nhom7FilterProducts()">
+                    </div>
+                </div>
+                <div class="sp-table-wrap">
+                    <table class="sp-table">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Ảnh</th>
+                            <th>Tên sản phẩm</th>
+                            <th>Giá</th>
+                            <th>Tồn kho</th>
+                            <th>Trạng thái</th>
+                            <th>Thao tác</th>
+                        </tr>
+                        </thead>
+                        <tbody id="nhom7-admin-product-list"></tbody>
+                    </table>
+                </div>
             </div>
+        </section>
 
-            <div class="nhom7-admin-card">
-                <h3>8</h3>
-                <p>Đơn hàng</p>
+        <!-- SECTION: CATEGORIES (placeholder) -->
+        <section id="section-categories" class="sp-section">
+            <div class="sp-panel">
+                <div class="sp-empty-state">
+                    <div class="sp-empty-icon">◉</div>
+                    <h3>Quản lý Danh mục</h3>
+                    <p>Chức năng đang được phát triển...</p>
+                </div>
             </div>
+        </section>
 
-        </div>
+        <!-- SECTION: USERS (placeholder) -->
+        <section id="section-users" class="sp-section">
+            <div class="sp-panel">
+                <div class="sp-empty-state">
+                    <div class="sp-empty-icon">◎</div>
+                    <h3>Quản lý Người dùng</h3>
+                    <p>Chức năng đang được phát triển...</p>
+                </div>
+            </div>
+        </section>
 
-        <!-- TABLE -->
-        <div class="nhom7-admin-form">
-
-            <h2>Thêm sản phẩm</h2>
-
-            <input
-                    type="text"
-                    id="nhom7-name"
-                    placeholder="Tên sản phẩm"
-            >
-
-            <input
-                    type="number"
-                    id="nhom7-price"
-                    placeholder="Giá sản phẩm"
-            >
-
-            <input
-                    type="number"
-                    id="nhom7-stock"
-                    placeholder="Số lượng tồn kho"
-            >
-
-            <input
-                    type="file"
-                    id="nhom7-image"
-                    accept="image/*"
-            >
-
-            <img
-                    id="nhom7-preview-image"
-                    style="
-                    width:120px;
-                    margin-top:10px;
-                    border-radius:10px;
-                    display:none;
-                "
-            >
-
-            <textarea
-                    id="nhom7-description"
-                    placeholder="Mô tả sản phẩm"
-            ></textarea>
-
-            <button onclick="nhom7AddProduct()">
-                Thêm sản phẩm
-            </button>
-
-        </div>
-        <div class="nhom7-admin-table">
-
-            <h2>Danh sách sản phẩm</h2>
-
-            <table>
-
-                <thead>
-
-                <tr>
-                    <th>ID</th>
-                    <th>Ảnh</th>
-                    <th>Tên sản phẩm</th>
-                    <th>Giá</th>
-                    <th>Tồn kho</th>
-                    <th>Action</th>
-                </tr>
-
-                </thead>
-
-                <tbody id="nhom7-admin-product-list">
-
-                <tr>
-
-                    <td>1</td>
-
-                    <td>
-                        <img
-                                src="/nhom7images/products/cerave.png"
-                                width="60"
-                        >
-                    </td>
-
-                    <td>Sữa rửa mặt Cerave</td>
-
-                    <td>250000đ</td>
-
-                    <td>50</td>
-
-                    <td>
-
-                        <button class="nhom7-edit-btn">
-                            Sửa
-                        </button>
-
-                        <button class="nhom7-delete-btn">
-                            Xóa
-                        </button>
-
-                    </td>
-
-                </tr>
-
-                </tbody>
-
-            </table>
-
-        </div>
+        <!-- SECTION: ORDERS (placeholder) -->
+        <section id="section-orders" class="sp-section">
+            <div class="sp-panel">
+                <div class="sp-empty-state">
+                    <div class="sp-empty-icon">◇</div>
+                    <h3>Quản lý Đơn hàng</h3>
+                    <p>Chức năng đang được phát triển...</p>
+                </div>
+            </div>
+        </section>
 
     </main>
-
 </div>
+
+<!-- EDIT MODAL -->
+<div class="sp-modal-overlay" id="sp-modal" style="display:none">
+    <div class="sp-modal">
+        <div class="sp-modal-header">
+            <h3>✦ Chỉnh sửa sản phẩm</h3>
+            <button onclick="nhom7CloseModal()">✕</button>
+        </div>
+        <div class="sp-modal-body">
+            <input type="hidden" id="edit-id">
+            <div class="sp-field">
+                <label>Tên sản phẩm</label>
+                <input type="text" id="edit-name">
+            </div>
+            <div class="sp-field-row">
+                <div class="sp-field">
+                    <label>Giá (đ)</label>
+                    <input type="number" id="edit-price">
+                </div>
+                <div class="sp-field">
+                    <label>Tồn kho</label>
+                    <input type="number" id="edit-stock">
+                </div>
+            </div>
+            <div class="sp-field">
+                <label>Mô tả</label>
+                <textarea id="edit-description"></textarea>
+            </div>
+        </div>
+        <div class="sp-modal-footer">
+            <button class="sp-btn-primary" onclick="nhom7SaveEdit()">Lưu thay đổi</button>
+            <button class="sp-btn-ghost" onclick="nhom7CloseModal()">Hủy</button>
+        </div>
+    </div>
+</div>
+
+<!-- TOAST -->
+<div class="sp-toast" id="sp-toast"></div>
+
 <script src="/nhom7js/nhom7admin.js"></script>
 </body>
 </html>

@@ -1,201 +1,303 @@
-const role =
-    localStorage.getItem("nhom7_role");
+// ============================================
+//  SKINCARE PERFECT – ADMIN JS
+// ============================================
 
-if(role !== "ADMIN"){
-
-    alert("Bạn không có quyền truy cập");
-
+// --- AUTH CHECK ---
+const role = localStorage.getItem("nhom7_role");
+if (role !== "ADMIN") {
+    alert("Bạn không có quyền truy cập trang này!");
     window.location.href = "/";
 }
-async function nhom7LoadAdminProducts() {
 
-    try {
+// --- TOAST NOTIFICATION ---
+function nhom7Toast(msg, type = "success") {
+    const toast = document.getElementById("sp-toast");
+    toast.textContent = msg;
+    toast.className = `sp-toast sp-toast--show sp-toast--${type}`;
+    setTimeout(() => {
+        toast.className = "sp-toast";
+    }, 3000);
+}
 
-        const response =
-            await fetch("http://localhost:8080/api/products");
+// --- SECTION NAVIGATION ---
+const sectionTitles = {
+    dashboard: "Dashboard",
+    products: "Quản lý Sản phẩm",
+    categories: "Quản lý Danh mục",
+    users: "Quản lý Người dùng",
+    orders: "Đơn hàng"
+};
 
-        const products =
-            await response.json();
+function nhom7ShowSection(name) {
+    document.querySelectorAll(".sp-section").forEach(s => s.classList.remove("active"));
+    document.querySelectorAll(".sp-nav-item").forEach(n => n.classList.remove("active"));
 
-        const table =
-            document.getElementById("nhom7-admin-product-list");
+    document.getElementById(`section-${name}`)?.classList.add("active");
+    document.querySelector(`[data-section="${name}"]`)?.classList.add("active");
+    document.getElementById("sp-page-heading").textContent = sectionTitles[name] || name;
+}
 
-        let html = "";
-
-        products.forEach(product => {
-
-            html += `
-
-            <tr>
-
-                <td>${product.id}</td>
-
-                <td>
-                    <img
-                        src="/nhom7images/${product.image}"
-                        width="70"
-                    >
-                </td>
-
-                <td>${product.name}</td>
-
-                <td>${product.price}đ</td>
-
-                <td>${product.stock}</td>
-
-                <td>
-
-                    <button
-                        class="nhom7-edit-btn"
-                        onclick="nhom7EditProduct(${product.id})"
-                    >
-                        Sửa
-                    </button>
-
-                    <button
-                        class="nhom7-delete-btn"
-                        onclick="nhom7DeleteProduct(${product.id})"
-                    >
-                        Xóa
-                    </button>
-
-                </td>
-
-            </tr>
-
-            `;
-        });
-
-        table.innerHTML = html;
-
-    } catch (error) {
-
-        console.error(error);
+// --- LOGOUT ---
+function nhom7Logout() {
+    if (confirm("Bạn có muốn đăng xuất không?")) {
+        localStorage.removeItem("nhom7_token");
+        localStorage.removeItem("nhom7_role");
+        window.location.href = "/nhom7login.html";
     }
 }
 
-async function nhom7DeleteProduct(id) {
+// --- ALL PRODUCTS (cache for filter) ---
+let nhom7AllProducts = [];
 
-    const confirmDelete =
-        confirm("Bạn có chắc muốn xóa sản phẩm?");
+// --- LOAD PRODUCTS ---
+async function nhom7LoadAdminProducts() {
+    try {
+        const response = await fetch("http://localhost:8080/api/products");
+        const products = await response.json();
+        nhom7AllProducts = products;
 
-    if(!confirmDelete){
+        nhom7RenderTable(products);
+        nhom7RenderRecent(products);
+
+        // Update stat cards
+        document.getElementById("card-products").textContent = products.length;
+
+    } catch (error) {
+        console.error(error);
+        nhom7Toast("Không thể tải danh sách sản phẩm", "error");
+    }
+}
+
+// --- RENDER TABLE ---
+function nhom7RenderTable(products) {
+    const tbody = document.getElementById("nhom7-admin-product-list");
+
+    if (products.length === 0) {
+        tbody.innerHTML = `
+            <tr>
+                <td colspan="7" style="text-align:center;padding:40px;color:#888;">
+                    Không tìm thấy sản phẩm nào
+                </td>
+            </tr>
+        `;
         return;
     }
 
+    tbody.innerHTML = products.map(p => `
+        <tr>
+            <td><span style="color:#aaa;font-size:13px;">#${p.id}</span></td>
+            <td>
+                <img src="/nhom7images/${p.image}" alt="${p.name}"
+                     onerror="this.src='https://placehold.co/56x56/ffd6e7/ff4f8b?text=SP'">
+            </td>
+            <td>
+                <div style="font-weight:600;font-size:14px;">${p.name}</div>
+                <div style="color:#aaa;font-size:12px;margin-top:2px;">${p.brand?.name || ''}</div>
+            </td>
+            <td style="font-weight:600;color:#ff4f8b;">${Number(p.price).toLocaleString('vi-VN')}đ</td>
+            <td>
+                <span style="font-weight:500;">${p.stock}</span>
+                <span style="color:#aaa;font-size:12px;"> sản phẩm</span>
+            </td>
+            <td>
+                <span class="sp-badge ${p.status ? 'sp-badge--active' : 'sp-badge--inactive'}">
+                    ${p.status ? '● Đang bán' : '● Tạm dừng'}
+                </span>
+            </td>
+            <td>
+                <div class="sp-action-btns">
+                    <button class="sp-edit-btn" onclick="nhom7OpenEdit(${p.id})">✏ Sửa</button>
+                    <button class="sp-delete-btn" onclick="nhom7DeleteProduct(${p.id})">✕ Xóa</button>
+                </div>
+            </td>
+        </tr>
+    `).join('');
+}
+
+// --- RENDER RECENT (dashboard) ---
+function nhom7RenderRecent(products) {
+    const recent = [...products].slice(-5).reverse();
+    const tbody = document.getElementById("sp-recent-products");
+    if (!tbody) return;
+
+    tbody.innerHTML = recent.map(p => `
+        <tr>
+            <td>
+                <img src="/nhom7images/${p.image}" alt="${p.name}"
+                     onerror="this.src='https://placehold.co/40x40/ffd6e7/ff4f8b?text=SP'"
+                     style="width:40px;height:40px;">
+            </td>
+            <td style="font-weight:500;font-size:13px;">${p.name}</td>
+            <td style="color:#ff4f8b;font-weight:600;">${Number(p.price).toLocaleString('vi-VN')}đ</td>
+            <td>${p.stock}</td>
+        </tr>
+    `).join('');
+}
+
+// --- FILTER / SEARCH ---
+function nhom7FilterProducts() {
+    const q = document.getElementById("sp-search").value.toLowerCase();
+    const filtered = nhom7AllProducts.filter(p =>
+        p.name.toLowerCase().includes(q) ||
+        String(p.id).includes(q)
+    );
+    nhom7RenderTable(filtered);
+}
+
+// --- DELETE ---
+async function nhom7DeleteProduct(id) {
+    if (!confirm("Bạn có chắc muốn xóa sản phẩm này?")) return;
+
     try {
-
-        await fetch(
-            `http://localhost:8080/api/products/${id}`,
-            {
-                method: "DELETE"
-            }
-        );
-
-        alert("Xóa thành công");
-
+        await fetch(`http://localhost:8080/api/products/${id}`, { method: "DELETE" });
+        nhom7Toast("Đã xóa sản phẩm thành công ✓");
         nhom7LoadAdminProducts();
-
     } catch (error) {
-
         console.error(error);
+        nhom7Toast("Xóa thất bại!", "error");
     }
 }
 
-function nhom7EditProduct(id){
+// --- ADD PRODUCT ---
+async function nhom7AddProduct() {
+    const name        = document.getElementById("nhom7-name").value.trim();
+    const price       = document.getElementById("nhom7-price").value;
+    const stock       = document.getElementById("nhom7-stock").value;
+    const description = document.getElementById("nhom7-description").value.trim();
+    const categoryId  = document.getElementById("category").value;
+    const brandId     = document.getElementById("brand").value;
+    const imageFile   = document.getElementById("nhom7-image").files[0];
 
-    alert("Chức năng sửa sẽ làm tiếp 😄");
-}
+    if (!name || !price || !stock || !categoryId || !brandId) {
+        nhom7Toast("Vui lòng điền đầy đủ thông tin!", "error");
+        return;
+    }
 
-async function nhom7AddProduct(){
-
-    const name =
-        document.getElementById("nhom7-name").value;
-
-    const price =
-        document.getElementById("nhom7-price").value;
-
-    const stock =
-        document.getElementById("nhom7-stock").value;
-
-    const imageFile =
-        document.getElementById("nhom7-image").files[0];
-
-    const image =
-        "products/" + imageFile.name;
-
-    const description =
-        document.getElementById("nhom7-description").value;
+    const image = imageFile ? "products/" + imageFile.name : "products/default.png";
 
     const product = {
-
-        name: name,
-
-        price: price,
-
-        stock: stock,
-
-        image: image,
-
-        description: description,
-
+        name, price, stock, image, description,
         ingredients: "Đang cập nhật",
-
         status: true,
-
-        category: {
-            id: 1
-        },
-
-        brand: {
-            id: 1
-        }
+        category: { id: categoryId },
+        brand: { id: brandId }
     };
 
-    try{
+    const btn = document.getElementById("sp-submit-btn");
+    btn.textContent = "Đang thêm...";
+    btn.disabled = true;
 
-        await fetch(
-            "http://localhost:8080/api/products",
-            {
-                method: "POST",
-
-                headers:{
-                    "Content-Type":"application/json"
-                },
-
-                body: JSON.stringify(product)
-            }
-        );
-
-        alert("Thêm sản phẩm thành công");
-
+    try {
+        await fetch("http://localhost:8080/api/products", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(product)
+        });
+        nhom7Toast("Thêm sản phẩm thành công ✓");
+        nhom7ResetForm();
         nhom7LoadAdminProducts();
-
-    }catch(error){
-
+    } catch (error) {
         console.error(error);
+        nhom7Toast("Thêm sản phẩm thất bại!", "error");
+    } finally {
+        btn.textContent = "+ Thêm sản phẩm";
+        btn.disabled = false;
     }
 }
-document
-    .getElementById("nhom7-image")
-    .addEventListener("change", function(event){
 
-        const file =
-            event.target.files[0];
+// --- RESET FORM ---
+function nhom7ResetForm() {
+    document.getElementById("nhom7-name").value = "";
+    document.getElementById("nhom7-price").value = "";
+    document.getElementById("nhom7-stock").value = "";
+    document.getElementById("nhom7-description").value = "";
+    document.getElementById("category").value = "";
+    document.getElementById("brand").value = "";
+    document.getElementById("nhom7-image").value = "";
+    nhom7RemoveImage();
 
-        if(file){
+    document.getElementById("sp-form-title").textContent = "✦ Thêm sản phẩm mới";
+    document.getElementById("sp-submit-btn").textContent = "+ Thêm sản phẩm";
+}
 
-            const imageUrl =
-                URL.createObjectURL(file);
+// --- REMOVE IMAGE PREVIEW ---
+function nhom7RemoveImage() {
+    document.getElementById("sp-preview-wrap").style.display = "none";
+    document.getElementById("nhom7-preview-image").src = "";
+    document.getElementById("nhom7-image").value = "";
+}
 
-            const preview =
-                document.getElementById(
-                    "nhom7-preview-image"
-                );
+// --- IMAGE PREVIEW ---
+document.getElementById("nhom7-image").addEventListener("change", function (e) {
+    const file = e.target.files[0];
+    if (!file) return;
+    const url = URL.createObjectURL(file);
+    const preview = document.getElementById("nhom7-preview-image");
+    preview.src = url;
+    document.getElementById("sp-preview-wrap").style.display = "block";
+});
 
-            preview.src = imageUrl;
+// --- TOGGLE FORM COLLAPSE ---
+let formOpen = true;
+function nhom7ToggleForm() {
+    formOpen = !formOpen;
+    const body = document.getElementById("sp-form-body");
+    const btn  = document.getElementById("sp-toggle-form-btn");
+    body.classList.toggle("sp-hidden", !formOpen);
+    btn.textContent = formOpen ? "Thu gọn ↑" : "Mở rộng ↓";
+}
 
-            preview.style.display = "block";
-        }
-    });
+// --- EDIT MODAL ---
+function nhom7OpenEdit(id) {
+    const p = nhom7AllProducts.find(x => x.id === id);
+    if (!p) return;
+
+    document.getElementById("edit-id").value          = p.id;
+    document.getElementById("edit-name").value        = p.name;
+    document.getElementById("edit-price").value       = p.price;
+    document.getElementById("edit-stock").value       = p.stock;
+    document.getElementById("edit-description").value = p.description || "";
+
+    document.getElementById("sp-modal").style.display = "flex";
+}
+
+function nhom7CloseModal() {
+    document.getElementById("sp-modal").style.display = "none";
+}
+
+async function nhom7SaveEdit() {
+    const id          = document.getElementById("edit-id").value;
+    const name        = document.getElementById("edit-name").value.trim();
+    const price       = document.getElementById("edit-price").value;
+    const stock       = document.getElementById("edit-stock").value;
+    const description = document.getElementById("edit-description").value.trim();
+
+    const existing = nhom7AllProducts.find(x => String(x.id) === String(id));
+
+    const updated = {
+        ...existing,
+        name, price, stock, description
+    };
+
+    try {
+        await fetch(`http://localhost:8080/api/products/${id}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(updated)
+        });
+        nhom7Toast("Cập nhật thành công ✓");
+        nhom7CloseModal();
+        nhom7LoadAdminProducts();
+    } catch (error) {
+        console.error(error);
+        nhom7Toast("Cập nhật thất bại!", "error");
+    }
+}
+
+// Close modal on overlay click
+document.getElementById("sp-modal").addEventListener("click", function (e) {
+    if (e.target === this) nhom7CloseModal();
+});
+
+// --- INIT ---
 nhom7LoadAdminProducts();

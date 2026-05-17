@@ -21,7 +21,6 @@
                 <div class="sp-brand-sub">Perfect Admin</div>
             </div>
         </div>
-
         <nav class="sp-nav">
             <a class="sp-nav-item active" data-section="dashboard" onclick="nhom7ShowSection('dashboard')">
                 <span class="sp-nav-icon">⊞</span> Dashboard
@@ -39,10 +38,7 @@
                 <span class="sp-nav-icon">◇</span> Đơn hàng
             </a>
         </nav>
-
-        <button class="sp-logout" onclick="nhom7Logout()">
-            ⏻ Đăng xuất
-        </button>
+        <button class="sp-logout" onclick="nhom7Logout()">⏻ Đăng xuất</button>
     </aside>
 
     <!-- MAIN -->
@@ -59,19 +55,18 @@
             </div>
         </div>
 
-        <!-- SECTION: DASHBOARD -->
+        <!-- ===== DASHBOARD ===== -->
         <section id="section-dashboard" class="sp-section active">
-
             <div class="sp-cards">
                 <div class="sp-card sp-card--pink">
                     <div class="sp-card-icon">◈</div>
-                    <div class="sp-card-num" id="card-products">12</div>
+                    <div class="sp-card-num" id="card-products">–</div>
                     <div class="sp-card-label">Sản phẩm</div>
                     <div class="sp-card-bar"></div>
                 </div>
                 <div class="sp-card sp-card--rose">
                     <div class="sp-card-icon">◉</div>
-                    <div class="sp-card-num" id="card-categories">6</div>
+                    <div class="sp-card-num" id="card-categories">–</div>
                     <div class="sp-card-label">Danh mục</div>
                     <div class="sp-card-bar"></div>
                 </div>
@@ -88,7 +83,6 @@
                     <div class="sp-card-bar"></div>
                 </div>
             </div>
-
             <div class="sp-dashboard-bottom">
                 <div class="sp-recent-box">
                     <div class="sp-box-header">
@@ -105,16 +99,13 @@
             </div>
         </section>
 
-        <!-- SECTION: PRODUCTS -->
+        <!-- ===== PRODUCTS ===== -->
         <section id="section-products" class="sp-section">
-
-            <!-- ADD FORM -->
             <div class="sp-panel" id="sp-form-panel">
                 <div class="sp-panel-header">
                     <h2 id="sp-form-title">✦ Thêm sản phẩm mới</h2>
                     <button class="sp-btn-icon" onclick="nhom7ToggleForm()" id="sp-toggle-form-btn">Thu gọn ↑</button>
                 </div>
-
                 <div class="sp-form-grid" id="sp-form-body">
                     <div class="sp-form-left">
                         <div class="sp-field">
@@ -134,14 +125,9 @@
                         <div class="sp-field-row">
                             <div class="sp-field">
                                 <label>Danh mục</label>
+                                <!-- Tự động load từ API -->
                                 <select id="category">
                                     <option value="">Chọn danh mục</option>
-                                    <option value="1">Sữa rửa mặt</option>
-                                    <option value="2">Serum</option>
-                                    <option value="3">Kem dưỡng</option>
-                                    <option value="4">Kem chống nắng</option>
-                                    <option value="5">Toner</option>
-                                    <option value="6">Tẩy trang</option>
                                 </select>
                             </div>
                             <div class="sp-field">
@@ -159,13 +145,10 @@
                             <textarea id="nhom7-description" placeholder="Mô tả chi tiết về sản phẩm..."></textarea>
                         </div>
                         <div class="sp-form-actions">
-                            <button class="sp-btn-primary" onclick="nhom7AddProduct()" id="sp-submit-btn">
-                                + Thêm sản phẩm
-                            </button>
+                            <button class="sp-btn-primary" onclick="nhom7AddProduct()" id="sp-submit-btn">+ Thêm sản phẩm</button>
                             <button class="sp-btn-ghost" onclick="nhom7ResetForm()">Hủy</button>
                         </div>
                     </div>
-
                     <div class="sp-form-right">
                         <div class="sp-upload-area" onclick="document.getElementById('nhom7-image').click()">
                             <div class="sp-upload-icon">⊕</div>
@@ -181,7 +164,6 @@
                 </div>
             </div>
 
-            <!-- PRODUCT TABLE -->
             <div class="sp-panel sp-panel--table">
                 <div class="sp-panel-header">
                     <h2>Danh sách sản phẩm</h2>
@@ -193,13 +175,8 @@
                     <table class="sp-table">
                         <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Ảnh</th>
-                            <th>Tên sản phẩm</th>
-                            <th>Giá</th>
-                            <th>Tồn kho</th>
-                            <th>Trạng thái</th>
-                            <th>Thao tác</th>
+                            <th>ID</th><th>Ảnh</th><th>Tên sản phẩm</th>
+                            <th>Giá</th><th>Tồn kho</th><th>Trạng thái</th><th>Thao tác</th>
                         </tr>
                         </thead>
                         <tbody id="nhom7-admin-product-list"></tbody>
@@ -208,18 +185,66 @@
             </div>
         </section>
 
-        <!-- SECTION: CATEGORIES (placeholder) -->
+        <!-- ===== CATEGORIES ===== -->
         <section id="section-categories" class="sp-section">
+
+            <!-- FORM THÊM DANH MỤC -->
             <div class="sp-panel">
-                <div class="sp-empty-state">
-                    <div class="sp-empty-icon">◉</div>
-                    <h3>Quản lý Danh mục</h3>
-                    <p>Chức năng đang được phát triển...</p>
+                <div class="sp-panel-header">
+                    <h2 id="sp-cat-form-title">✦ Thêm danh mục mới</h2>
+                </div>
+                <div class="sp-cat-form">
+                    <div class="sp-field">
+                        <label>Tên danh mục</label>
+                        <input type="text" id="cat-name" placeholder="VD: Sữa rửa mặt, Serum...">
+                    </div>
+                    <div class="sp-field">
+                        <label>Mô tả</label>
+                        <input type="text" id="cat-desc" placeholder="Mô tả ngắn về danh mục...">
+                    </div>
+                    <div class="sp-field">
+                        <label>Trạng thái</label>
+                        <select id="cat-status">
+                            <option value="true">Đang hoạt động</option>
+                            <option value="false">Tạm dừng</option>
+                        </select>
+                    </div>
+                    <div class="sp-form-actions">
+                        <button class="sp-btn-primary" onclick="nhom7AddCategory()" id="sp-cat-submit-btn">
+                            + Thêm danh mục
+                        </button>
+                        <button class="sp-btn-ghost" onclick="nhom7ResetCategoryForm()">Hủy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BẢNG DANH MỤC -->
+            <div class="sp-panel sp-panel--table">
+                <div class="sp-panel-header">
+                    <h2>Danh sách danh mục</h2>
+                    <div class="sp-search-wrap">
+                        <input type="text" id="sp-cat-search" placeholder="🔍 Tìm danh mục..." oninput="nhom7FilterCategories()">
+                    </div>
+                </div>
+                <div class="sp-table-wrap">
+                    <table class="sp-table">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Tên danh mục</th>
+                            <th>Mô tả</th>
+                            <th>Số SP</th>
+                            <th>Trạng thái</th>
+                            <th>Thao tác</th>
+                        </tr>
+                        </thead>
+                        <tbody id="nhom7-admin-category-list"></tbody>
+                    </table>
                 </div>
             </div>
         </section>
 
-        <!-- SECTION: USERS (placeholder) -->
+        <!-- ===== USERS ===== -->
         <section id="section-users" class="sp-section">
             <div class="sp-panel">
                 <div class="sp-empty-state">
@@ -230,7 +255,7 @@
             </div>
         </section>
 
-        <!-- SECTION: ORDERS (placeholder) -->
+        <!-- ===== ORDERS ===== -->
         <section id="section-orders" class="sp-section">
             <div class="sp-panel">
                 <div class="sp-empty-state">
@@ -244,7 +269,7 @@
     </main>
 </div>
 
-<!-- EDIT MODAL -->
+<!-- MODAL: SỬA SẢN PHẨM -->
 <div class="sp-modal-overlay" id="sp-modal" style="display:none">
     <div class="sp-modal">
         <div class="sp-modal-header">
@@ -275,6 +300,38 @@
         <div class="sp-modal-footer">
             <button class="sp-btn-primary" onclick="nhom7SaveEdit()">Lưu thay đổi</button>
             <button class="sp-btn-ghost" onclick="nhom7CloseModal()">Hủy</button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL: SỬA DANH MỤC -->
+<div class="sp-modal-overlay" id="sp-cat-modal" style="display:none">
+    <div class="sp-modal">
+        <div class="sp-modal-header">
+            <h3>✦ Chỉnh sửa danh mục</h3>
+            <button onclick="nhom7CloseCatModal()">✕</button>
+        </div>
+        <div class="sp-modal-body">
+            <input type="hidden" id="edit-cat-id">
+            <div class="sp-field">
+                <label>Tên danh mục</label>
+                <input type="text" id="edit-cat-name">
+            </div>
+            <div class="sp-field">
+                <label>Mô tả</label>
+                <input type="text" id="edit-cat-desc">
+            </div>
+            <div class="sp-field">
+                <label>Trạng thái</label>
+                <select id="edit-cat-status">
+                    <option value="true">Đang hoạt động</option>
+                    <option value="false">Tạm dừng</option>
+                </select>
+            </div>
+        </div>
+        <div class="sp-modal-footer">
+            <button class="sp-btn-primary" onclick="nhom7SaveCatEdit()">Lưu thay đổi</button>
+            <button class="sp-btn-ghost" onclick="nhom7CloseCatModal()">Hủy</button>
         </div>
     </div>
 </div>

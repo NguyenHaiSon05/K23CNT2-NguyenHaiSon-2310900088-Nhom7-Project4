@@ -723,3 +723,22 @@ body {
 #sp-form-body.sp-hidden {
     display: none;
 }
+
+/* ── CATEGORY FORM (inline layout) ── */
+.sp-cat-form {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 1fr auto;
+    gap: 16px;
+    align-items: end;
+}
+
+.sp-cat-form .sp-form-actions {
+    margin-top: 0;
+    padding-bottom: 1px;
+}
+
+@media (max-width: 900px) {
+    .sp-cat-form {
+        grid-template-columns: 1fr 1fr;
+    }
+}

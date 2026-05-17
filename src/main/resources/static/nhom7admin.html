@@ -72,7 +72,7 @@
                 </div>
                 <div class="sp-card sp-card--fuchsia">
                     <div class="sp-card-icon">◎</div>
-                    <div class="sp-card-num" id="card-users">25</div>
+                    <div class="sp-card-num" id="card-users">–</div>
                     <div class="sp-card-label">Người dùng</div>
                     <div class="sp-card-bar"></div>
                 </div>
@@ -125,7 +125,6 @@
                         <div class="sp-field-row">
                             <div class="sp-field">
                                 <label>Danh mục</label>
-                                <!-- Tự động load từ API -->
                                 <select id="category">
                                     <option value="">Chọn danh mục</option>
                                 </select>
@@ -163,7 +162,6 @@
                     </div>
                 </div>
             </div>
-
             <div class="sp-panel sp-panel--table">
                 <div class="sp-panel-header">
                     <h2>Danh sách sản phẩm</h2>
@@ -187,8 +185,6 @@
 
         <!-- ===== CATEGORIES ===== -->
         <section id="section-categories" class="sp-section">
-
-            <!-- FORM THÊM DANH MỤC -->
             <div class="sp-panel">
                 <div class="sp-panel-header">
                     <h2 id="sp-cat-form-title">✦ Thêm danh mục mới</h2>
@@ -210,15 +206,11 @@
                         </select>
                     </div>
                     <div class="sp-form-actions">
-                        <button class="sp-btn-primary" onclick="nhom7AddCategory()" id="sp-cat-submit-btn">
-                            + Thêm danh mục
-                        </button>
+                        <button class="sp-btn-primary" onclick="nhom7AddCategory()" id="sp-cat-submit-btn">+ Thêm danh mục</button>
                         <button class="sp-btn-ghost" onclick="nhom7ResetCategoryForm()">Hủy</button>
                     </div>
                 </div>
             </div>
-
-            <!-- BẢNG DANH MỤC -->
             <div class="sp-panel sp-panel--table">
                 <div class="sp-panel-header">
                     <h2>Danh sách danh mục</h2>
@@ -230,12 +222,8 @@
                     <table class="sp-table">
                         <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Tên danh mục</th>
-                            <th>Mô tả</th>
-                            <th>Số SP</th>
-                            <th>Trạng thái</th>
-                            <th>Thao tác</th>
+                            <th>ID</th><th>Tên danh mục</th><th>Mô tả</th>
+                            <th>Số SP</th><th>Trạng thái</th><th>Thao tác</th>
                         </tr>
                         </thead>
                         <tbody id="nhom7-admin-category-list"></tbody>
@@ -246,11 +234,45 @@
 
         <!-- ===== USERS ===== -->
         <section id="section-users" class="sp-section">
+
+            <!-- BỘ LỌC + TÌM KIẾM -->
             <div class="sp-panel">
-                <div class="sp-empty-state">
-                    <div class="sp-empty-icon">◎</div>
-                    <h3>Quản lý Người dùng</h3>
-                    <p>Chức năng đang được phát triển...</p>
+                <div class="sp-user-toolbar">
+                    <div class="sp-search-wrap">
+                        <input type="text" id="sp-user-search"
+                               placeholder="🔍 Tìm theo tên, email, username..."
+                               oninput="nhom7FilterUsers()">
+                    </div>
+                    <div class="sp-user-filters">
+                        <button class="sp-filter-btn active" data-role="ALL"   onclick="nhom7SetUserFilter('ALL',this)">Tất cả</button>
+                        <button class="sp-filter-btn"        data-role="USER"  onclick="nhom7SetUserFilter('USER',this)">Khách hàng</button>
+                        <button class="sp-filter-btn"        data-role="ADMIN" onclick="nhom7SetUserFilter('ADMIN',this)">Admin</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BẢNG NGƯỜI DÙNG -->
+            <div class="sp-panel sp-panel--table">
+                <div class="sp-panel-header">
+                    <h2>Danh sách người dùng</h2>
+                    <span class="sp-user-count" id="sp-user-count"></span>
+                </div>
+                <div class="sp-table-wrap">
+                    <table class="sp-table">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Người dùng</th>
+                            <th>Email</th>
+                            <th>Số điện thoại</th>
+                            <th>Vai trò</th>
+                            <th>Trạng thái</th>
+                            <th>Ngày tạo</th>
+                            <th>Thao tác</th>
+                        </tr>
+                        </thead>
+                        <tbody id="nhom7-admin-user-list"></tbody>
+                    </table>
                 </div>
             </div>
         </section>
@@ -332,6 +354,74 @@
         <div class="sp-modal-footer">
             <button class="sp-btn-primary" onclick="nhom7SaveCatEdit()">Lưu thay đổi</button>
             <button class="sp-btn-ghost" onclick="nhom7CloseCatModal()">Hủy</button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL: XEM CHI TIẾT NGƯỜI DÙNG -->
+<div class="sp-modal-overlay" id="sp-user-modal" style="display:none">
+    <div class="sp-modal sp-modal--user">
+        <div class="sp-modal-header">
+            <h3>✦ Chi tiết người dùng</h3>
+            <button onclick="nhom7CloseUserModal()">✕</button>
+        </div>
+        <div class="sp-modal-body">
+            <input type="hidden" id="edit-user-id">
+
+            <!-- Avatar + tên -->
+            <div class="sp-user-modal-top">
+                <div class="sp-user-modal-avatar" id="modal-user-avatar">U</div>
+                <div>
+                    <div class="sp-user-modal-name" id="modal-user-fullname"></div>
+                    <div class="sp-user-modal-username" id="modal-user-username"></div>
+                </div>
+            </div>
+
+            <div class="sp-field-row">
+                <div class="sp-field">
+                    <label>Họ tên</label>
+                    <input type="text" id="edit-user-fullname">
+                </div>
+                <div class="sp-field">
+                    <label>Username</label>
+                    <input type="text" id="edit-user-username" disabled
+                           style="background:#f5f5f5;color:#aaa;cursor:not-allowed;">
+                </div>
+            </div>
+            <div class="sp-field-row">
+                <div class="sp-field">
+                    <label>Email</label>
+                    <input type="email" id="edit-user-email">
+                </div>
+                <div class="sp-field">
+                    <label>Số điện thoại</label>
+                    <input type="text" id="edit-user-phone">
+                </div>
+            </div>
+            <div class="sp-field">
+                <label>Địa chỉ</label>
+                <input type="text" id="edit-user-address">
+            </div>
+            <div class="sp-field-row">
+                <div class="sp-field">
+                    <label>Vai trò</label>
+                    <select id="edit-user-role">
+                        <option value="USER">Khách hàng</option>
+                        <option value="ADMIN">Admin</option>
+                    </select>
+                </div>
+                <div class="sp-field">
+                    <label>Trạng thái</label>
+                    <select id="edit-user-status">
+                        <option value="true">Đang hoạt động</option>
+                        <option value="false">Bị khóa</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="sp-modal-footer">
+            <button class="sp-btn-primary" onclick="nhom7SaveUserEdit()">Lưu thay đổi</button>
+            <button class="sp-btn-ghost"   onclick="nhom7CloseUserModal()">Hủy</button>
         </div>
     </div>
 </div>

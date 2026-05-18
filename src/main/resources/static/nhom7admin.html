@@ -78,7 +78,7 @@
                 </div>
                 <div class="sp-card sp-card--magenta">
                     <div class="sp-card-icon">◇</div>
-                    <div class="sp-card-num" id="card-orders">8</div>
+                    <div class="sp-card-num" id="card-orders">–</div>
                     <div class="sp-card-label">Đơn hàng</div>
                     <div class="sp-card-bar"></div>
                 </div>
@@ -125,9 +125,7 @@
                         <div class="sp-field-row">
                             <div class="sp-field">
                                 <label>Danh mục</label>
-                                <select id="category">
-                                    <option value="">Chọn danh mục</option>
-                                </select>
+                                <select id="category"><option value="">Chọn danh mục</option></select>
                             </div>
                             <div class="sp-field">
                                 <label>Thương hiệu</label>
@@ -172,10 +170,7 @@
                 <div class="sp-table-wrap">
                     <table class="sp-table">
                         <thead>
-                        <tr>
-                            <th>ID</th><th>Ảnh</th><th>Tên sản phẩm</th>
-                            <th>Giá</th><th>Tồn kho</th><th>Trạng thái</th><th>Thao tác</th>
-                        </tr>
+                        <tr><th>ID</th><th>Ảnh</th><th>Tên sản phẩm</th><th>Giá</th><th>Tồn kho</th><th>Trạng thái</th><th>Thao tác</th></tr>
                         </thead>
                         <tbody id="nhom7-admin-product-list"></tbody>
                     </table>
@@ -221,10 +216,7 @@
                 <div class="sp-table-wrap">
                     <table class="sp-table">
                         <thead>
-                        <tr>
-                            <th>ID</th><th>Tên danh mục</th><th>Mô tả</th>
-                            <th>Số SP</th><th>Trạng thái</th><th>Thao tác</th>
-                        </tr>
+                        <tr><th>ID</th><th>Tên danh mục</th><th>Mô tả</th><th>Số SP</th><th>Trạng thái</th><th>Thao tác</th></tr>
                         </thead>
                         <tbody id="nhom7-admin-category-list"></tbody>
                     </table>
@@ -234,8 +226,6 @@
 
         <!-- ===== USERS ===== -->
         <section id="section-users" class="sp-section">
-
-            <!-- BỘ LỌC + TÌM KIẾM -->
             <div class="sp-panel">
                 <div class="sp-user-toolbar">
                     <div class="sp-search-wrap">
@@ -250,8 +240,6 @@
                     </div>
                 </div>
             </div>
-
-            <!-- BẢNG NGƯỜI DÙNG -->
             <div class="sp-panel sp-panel--table">
                 <div class="sp-panel-header">
                     <h2>Danh sách người dùng</h2>
@@ -261,14 +249,9 @@
                     <table class="sp-table">
                         <thead>
                         <tr>
-                            <th>ID</th>
-                            <th>Người dùng</th>
-                            <th>Email</th>
-                            <th>Số điện thoại</th>
-                            <th>Vai trò</th>
-                            <th>Trạng thái</th>
-                            <th>Ngày tạo</th>
-                            <th>Thao tác</th>
+                            <th>ID</th><th>Người dùng</th><th>Email</th>
+                            <th>Số điện thoại</th><th>Vai trò</th><th>Trạng thái</th>
+                            <th>Ngày tạo</th><th>Thao tác</th>
                         </tr>
                         </thead>
                         <tbody id="nhom7-admin-user-list"></tbody>
@@ -279,11 +262,76 @@
 
         <!-- ===== ORDERS ===== -->
         <section id="section-orders" class="sp-section">
+
+            <!-- THỐNG KÊ NHANH -->
+            <div class="sp-order-stats">
+                <div class="sp-order-stat sp-order-stat--all">
+                    <div class="sp-order-stat-num" id="ostat-all">–</div>
+                    <div class="sp-order-stat-label">Tất cả</div>
+                </div>
+                <div class="sp-order-stat sp-order-stat--pending">
+                    <div class="sp-order-stat-num" id="ostat-pending">–</div>
+                    <div class="sp-order-stat-label">Chờ xử lý</div>
+                </div>
+                <div class="sp-order-stat sp-order-stat--confirmed">
+                    <div class="sp-order-stat-num" id="ostat-confirmed">–</div>
+                    <div class="sp-order-stat-label">Đã xác nhận</div>
+                </div>
+                <div class="sp-order-stat sp-order-stat--shipping">
+                    <div class="sp-order-stat-num" id="ostat-shipping">–</div>
+                    <div class="sp-order-stat-label">Đang giao</div>
+                </div>
+                <div class="sp-order-stat sp-order-stat--delivered">
+                    <div class="sp-order-stat-num" id="ostat-delivered">–</div>
+                    <div class="sp-order-stat-label">Đã giao</div>
+                </div>
+                <div class="sp-order-stat sp-order-stat--cancelled">
+                    <div class="sp-order-stat-num" id="ostat-cancelled">–</div>
+                    <div class="sp-order-stat-label">Đã hủy</div>
+                </div>
+            </div>
+
+            <!-- BỘ LỌC -->
             <div class="sp-panel">
-                <div class="sp-empty-state">
-                    <div class="sp-empty-icon">◇</div>
-                    <h3>Quản lý Đơn hàng</h3>
-                    <p>Chức năng đang được phát triển...</p>
+                <div class="sp-user-toolbar">
+                    <div class="sp-search-wrap">
+                        <input type="text" id="sp-order-search"
+                               placeholder="🔍 Tìm theo ID, tên khách, địa chỉ..."
+                               oninput="nhom7FilterOrders()">
+                    </div>
+                    <div class="sp-user-filters">
+                        <button class="sp-filter-btn active" data-status="ALL"       onclick="nhom7SetOrderFilter('ALL',this)">Tất cả</button>
+                        <button class="sp-filter-btn"        data-status="PENDING"   onclick="nhom7SetOrderFilter('PENDING',this)">Chờ xử lý</button>
+                        <button class="sp-filter-btn"        data-status="CONFIRMED" onclick="nhom7SetOrderFilter('CONFIRMED',this)">Xác nhận</button>
+                        <button class="sp-filter-btn"        data-status="SHIPPING"  onclick="nhom7SetOrderFilter('SHIPPING',this)">Đang giao</button>
+                        <button class="sp-filter-btn"        data-status="DELIVERED" onclick="nhom7SetOrderFilter('DELIVERED',this)">Đã giao</button>
+                        <button class="sp-filter-btn"        data-status="CANCELLED" onclick="nhom7SetOrderFilter('CANCELLED',this)">Đã hủy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BẢNG ĐƠN HÀNG -->
+            <div class="sp-panel sp-panel--table">
+                <div class="sp-panel-header">
+                    <h2>Danh sách đơn hàng</h2>
+                    <span class="sp-user-count" id="sp-order-count"></span>
+                </div>
+                <div class="sp-table-wrap">
+                    <table class="sp-table">
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Khách hàng</th>
+                            <th>Ngày đặt</th>
+                            <th>Tổng tiền</th>
+                            <th>Thanh toán</th>
+                            <th>Địa chỉ</th>
+                            <th>Trạng thái</th>
+                            <th>Thao tác</th>
+                        </tr>
+                        </thead>
+                        <tbody id="nhom7-admin-order-list"></tbody>
+                    </table>
                 </div>
             </div>
         </section>
@@ -300,24 +348,12 @@
         </div>
         <div class="sp-modal-body">
             <input type="hidden" id="edit-id">
-            <div class="sp-field">
-                <label>Tên sản phẩm</label>
-                <input type="text" id="edit-name">
-            </div>
+            <div class="sp-field"><label>Tên sản phẩm</label><input type="text" id="edit-name"></div>
             <div class="sp-field-row">
-                <div class="sp-field">
-                    <label>Giá (đ)</label>
-                    <input type="number" id="edit-price">
-                </div>
-                <div class="sp-field">
-                    <label>Tồn kho</label>
-                    <input type="number" id="edit-stock">
-                </div>
+                <div class="sp-field"><label>Giá (đ)</label><input type="number" id="edit-price"></div>
+                <div class="sp-field"><label>Tồn kho</label><input type="number" id="edit-stock"></div>
             </div>
-            <div class="sp-field">
-                <label>Mô tả</label>
-                <textarea id="edit-description"></textarea>
-            </div>
+            <div class="sp-field"><label>Mô tả</label><textarea id="edit-description"></textarea></div>
         </div>
         <div class="sp-modal-footer">
             <button class="sp-btn-primary" onclick="nhom7SaveEdit()">Lưu thay đổi</button>
@@ -335,14 +371,8 @@
         </div>
         <div class="sp-modal-body">
             <input type="hidden" id="edit-cat-id">
-            <div class="sp-field">
-                <label>Tên danh mục</label>
-                <input type="text" id="edit-cat-name">
-            </div>
-            <div class="sp-field">
-                <label>Mô tả</label>
-                <input type="text" id="edit-cat-desc">
-            </div>
+            <div class="sp-field"><label>Tên danh mục</label><input type="text" id="edit-cat-name"></div>
+            <div class="sp-field"><label>Mô tả</label><input type="text" id="edit-cat-desc"></div>
             <div class="sp-field">
                 <label>Trạng thái</label>
                 <select id="edit-cat-status">
@@ -358,7 +388,7 @@
     </div>
 </div>
 
-<!-- MODAL: XEM CHI TIẾT NGƯỜI DÙNG -->
+<!-- MODAL: SỬA NGƯỜI DÙNG -->
 <div class="sp-modal-overlay" id="sp-user-modal" style="display:none">
     <div class="sp-modal sp-modal--user">
         <div class="sp-modal-header">
@@ -367,8 +397,6 @@
         </div>
         <div class="sp-modal-body">
             <input type="hidden" id="edit-user-id">
-
-            <!-- Avatar + tên -->
             <div class="sp-user-modal-top">
                 <div class="sp-user-modal-avatar" id="modal-user-avatar">U</div>
                 <div>
@@ -376,32 +404,18 @@
                     <div class="sp-user-modal-username" id="modal-user-username"></div>
                 </div>
             </div>
-
             <div class="sp-field-row">
-                <div class="sp-field">
-                    <label>Họ tên</label>
-                    <input type="text" id="edit-user-fullname">
-                </div>
+                <div class="sp-field"><label>Họ tên</label><input type="text" id="edit-user-fullname"></div>
                 <div class="sp-field">
                     <label>Username</label>
-                    <input type="text" id="edit-user-username" disabled
-                           style="background:#f5f5f5;color:#aaa;cursor:not-allowed;">
+                    <input type="text" id="edit-user-username" disabled style="background:#f5f5f5;color:#aaa;cursor:not-allowed;">
                 </div>
             </div>
             <div class="sp-field-row">
-                <div class="sp-field">
-                    <label>Email</label>
-                    <input type="email" id="edit-user-email">
-                </div>
-                <div class="sp-field">
-                    <label>Số điện thoại</label>
-                    <input type="text" id="edit-user-phone">
-                </div>
+                <div class="sp-field"><label>Email</label><input type="email" id="edit-user-email"></div>
+                <div class="sp-field"><label>Số điện thoại</label><input type="text" id="edit-user-phone"></div>
             </div>
-            <div class="sp-field">
-                <label>Địa chỉ</label>
-                <input type="text" id="edit-user-address">
-            </div>
+            <div class="sp-field"><label>Địa chỉ</label><input type="text" id="edit-user-address"></div>
             <div class="sp-field-row">
                 <div class="sp-field">
                     <label>Vai trò</label>
@@ -421,7 +435,67 @@
         </div>
         <div class="sp-modal-footer">
             <button class="sp-btn-primary" onclick="nhom7SaveUserEdit()">Lưu thay đổi</button>
-            <button class="sp-btn-ghost"   onclick="nhom7CloseUserModal()">Hủy</button>
+            <button class="sp-btn-ghost" onclick="nhom7CloseUserModal()">Hủy</button>
+        </div>
+    </div>
+</div>
+
+<!-- MODAL: CHI TIẾT ĐƠN HÀNG -->
+<div class="sp-modal-overlay" id="sp-order-modal" style="display:none">
+    <div class="sp-modal sp-modal--order">
+        <div class="sp-modal-header">
+            <h3>✦ Chi tiết đơn hàng <span id="modal-order-id"></span></h3>
+            <button onclick="nhom7CloseOrderModal()">✕</button>
+        </div>
+        <div class="sp-modal-body">
+            <input type="hidden" id="edit-order-id">
+
+            <!-- Thông tin đơn -->
+            <div class="sp-order-info-grid">
+                <div class="sp-order-info-item">
+                    <div class="sp-order-info-label">Khách hàng</div>
+                    <div class="sp-order-info-val" id="modal-order-user">–</div>
+                </div>
+                <div class="sp-order-info-item">
+                    <div class="sp-order-info-label">Ngày đặt</div>
+                    <div class="sp-order-info-val" id="modal-order-date">–</div>
+                </div>
+                <div class="sp-order-info-item">
+                    <div class="sp-order-info-label">Thanh toán</div>
+                    <div class="sp-order-info-val" id="modal-order-payment">–</div>
+                </div>
+                <div class="sp-order-info-item">
+                    <div class="sp-order-info-label">Địa chỉ giao</div>
+                    <div class="sp-order-info-val" id="modal-order-address">–</div>
+                </div>
+            </div>
+
+            <!-- Sản phẩm trong đơn -->
+            <div style="margin:20px 0 10px;font-weight:600;font-size:13px;color:#888;text-transform:uppercase;letter-spacing:0.8px;">
+                Sản phẩm
+            </div>
+            <div id="modal-order-items" class="sp-order-items"></div>
+
+            <!-- Tổng + đổi trạng thái -->
+            <div class="sp-order-modal-footer-info">
+                <div class="sp-order-total">
+                    Tổng cộng: <span id="modal-order-total">–</span>
+                </div>
+                <div class="sp-field" style="min-width:200px;">
+                    <label>Cập nhật trạng thái</label>
+                    <select id="edit-order-status">
+                        <option value="PENDING">Chờ xử lý</option>
+                        <option value="CONFIRMED">Đã xác nhận</option>
+                        <option value="SHIPPING">Đang giao</option>
+                        <option value="DELIVERED">Đã giao</option>
+                        <option value="CANCELLED">Đã hủy</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="sp-modal-footer">
+            <button class="sp-btn-primary" onclick="nhom7SaveOrderStatus()">Lưu trạng thái</button>
+            <button class="sp-btn-ghost" onclick="nhom7CloseOrderModal()">Đóng</button>
         </div>
     </div>
 </div>

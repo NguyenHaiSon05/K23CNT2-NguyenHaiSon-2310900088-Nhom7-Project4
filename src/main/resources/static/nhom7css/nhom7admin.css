@@ -880,3 +880,169 @@ body {
     color: var(--text-muted);
     margin-top: 2px;
 }
+
+/* ── ORDER STATS ── */
+.sp-order-stats {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 14px;
+    margin-bottom: 24px;
+}
+
+.sp-order-stat {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 20px 16px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    border-top: 3px solid transparent;
+    transition: var(--transition);
+    cursor: default;
+}
+
+.sp-order-stat:hover { transform: translateY(-3px); box-shadow: var(--shadow-lg); }
+
+.sp-order-stat--all       { border-color: #94a3b8; }
+.sp-order-stat--pending   { border-color: #f59e0b; }
+.sp-order-stat--confirmed { border-color: #3b82f6; }
+.sp-order-stat--shipping  { border-color: #8b5cf6; }
+.sp-order-stat--delivered { border-color: #10b981; }
+.sp-order-stat--cancelled { border-color: #ef4444; }
+
+.sp-order-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 6px;
+}
+
+.sp-order-stat--all       .sp-order-stat-num { color: #64748b; }
+.sp-order-stat--pending   .sp-order-stat-num { color: #f59e0b; }
+.sp-order-stat--confirmed .sp-order-stat-num { color: #3b82f6; }
+.sp-order-stat--shipping  .sp-order-stat-num { color: #8b5cf6; }
+.sp-order-stat--delivered .sp-order-stat-num { color: #10b981; }
+.sp-order-stat--cancelled .sp-order-stat-num { color: #ef4444; }
+
+.sp-order-stat-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+/* ── ORDER STATUS BADGE ── */
+.sp-order-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 30px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+.sp-order-badge--pending   { background: #fef3c7; color: #d97706; }
+.sp-order-badge--confirmed { background: #dbeafe; color: #1d4ed8; }
+.sp-order-badge--shipping  { background: #ede9fe; color: #6d28d9; }
+.sp-order-badge--delivered { background: #d1fae5; color: #059669; }
+.sp-order-badge--cancelled { background: #fee2e2; color: #dc2626; }
+
+/* ── ORDER MODAL ── */
+.sp-modal--order { width: 620px; }
+
+.sp-order-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    background: var(--pink-light);
+    border-radius: var(--radius-sm);
+    padding: 16px;
+    margin-bottom: 4px;
+}
+
+.sp-order-info-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 4px;
+}
+
+.sp-order-info-val {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+}
+
+/* ── ORDER ITEMS ── */
+.sp-order-items {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 200px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+.sp-order-item-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    background: var(--bg);
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+}
+
+.sp-order-item-row img {
+    width: 48px; height: 48px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.sp-order-item-info { flex: 1; }
+
+.sp-order-item-name {
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--text);
+}
+
+.sp-order-item-qty {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 2px;
+}
+
+.sp-order-item-price {
+    font-weight: 700;
+    color: var(--pink);
+    font-size: 14px;
+    white-space: nowrap;
+}
+
+/* ── ORDER MODAL FOOTER INFO ── */
+.sp-order-modal-footer-info {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+}
+
+.sp-order-total {
+    font-size: 16px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.sp-order-total span {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--pink);
+}

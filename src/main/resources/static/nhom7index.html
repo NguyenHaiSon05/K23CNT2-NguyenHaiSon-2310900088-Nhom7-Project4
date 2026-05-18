@@ -1,115 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Skincare Perfect</title>
+    <title>Skincare Perfect – Bí quyết làn da hoàn hảo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/nhom7css/nhom7style.css">
 </head>
 <body>
 
+<!-- HEADER -->
 <header class="nhom7-header">
-
-    <div class="nhom7-logo">
-        Skincare Perfect
-    </div>
-
+    <div class="nhom7-logo">Skincare <em>Perfect</em></div>
     <nav class="nhom7-nav">
-
         <a href="/">Trang chủ</a>
-
-        <a href="#nhom7-product-list">
-            Sản phẩm
-        </a>
-        <a href="/nhom7cart.html">
-            Giỏ hàng
-        </a>
-
+        <a href="#nhom7-product-list">Sản phẩm</a>
+        <a href="/nhom7cart.html">Giỏ hàng</a>
         <div id="nhom7-user-area"></div>
-
     </nav>
-
 </header>
 
+<!-- HERO AREA -->
 <section class="nhom7-home-top">
 
-    <!-- LEFT MENU -->
-
+    <!-- CATEGORY -->
     <div class="nhom7-category-box">
-
         <h3>Danh mục sản phẩm</h3>
-
         <ul class="nhom7-category-menu">
-
-            <li onclick="nhom7RenderProducts(nhom7AllProducts)">
-                Tất cả
-            </li>
-
-            <li onclick="nhom7FilterCategory('Tẩy trang')">
-                Tẩy trang
-            </li>
-
-            <li onclick="nhom7FilterCategory('Sữa rửa mặt')">
-                Sữa rửa mặt
-            </li>
-
-            <li onclick="nhom7FilterCategory('Toner')">
-                Toner
-            </li>
-
-            <li onclick="nhom7FilterCategory('Serum')">
-                Serum
-            </li>
-
-            <li onclick="nhom7FilterCategory('Kem dưỡng')">
-                Kem dưỡng
-            </li>
-
-            <li onclick="nhom7FilterCategory('Kem chống nắng')">
-                Kem chống nắng
-            </li>
-
+            <li onclick="nhom7RenderProducts(nhom7AllProducts)">Tất cả</li>
+            <li onclick="nhom7FilterCategory('Tẩy trang')">Tẩy trang</li>
+            <li onclick="nhom7FilterCategory('Sữa rửa mặt')">Sữa rửa mặt</li>
+            <li onclick="nhom7FilterCategory('Toner')">Toner</li>
+            <li onclick="nhom7FilterCategory('Serum')">Serum</li>
+            <li onclick="nhom7FilterCategory('Kem dưỡng')">Kem dưỡng</li>
+            <li onclick="nhom7FilterCategory('Kem chống nắng')">Kem chống nắng</li>
         </ul>
-
     </div>
 
-    <!-- CENTER BANNER -->
-
+    <!-- MAIN BANNER -->
     <div class="nhom7-main-banner">
-
-        <img
-                src="/nhom7images/banner.png"
-                alt=""
-        >
-
+        <img src="/nhom7images/banner.png" alt="Skincare Perfect Banner">
     </div>
 
-    <!-- RIGHT ADS -->
-
+    <!-- SIDE BANNERS -->
     <div class="nhom7-side-banner">
-
-        <img
-                src="/nhom7images/banner-right1.png"
-                alt=""
-        >
-
-        <img
-                src="/nhom7images/banner-right2.png"
-                alt=""
-        >
-
+        <img src="/nhom7images/banner-right1.png" alt="">
+        <img src="/nhom7images/banner-right2.png" alt="">
     </div>
 
 </section>
 
-<main class="nhom7-container">
-    <h2>Danh sách sản phẩm</h2>
+<!-- PRODUCT SECTION -->
+<main class="nhom7-container" id="nhom7-product-list-section">
+
+    <h2>Sản phẩm <span>nổi bật</span></h2>
+    <p class="nhom7-section-subtitle">Được lựa chọn kỹ lưỡng từ các thương hiệu hàng đầu thế giới</p>
 
     <div id="nhom7-product-list"></div>
+
 </main>
 
+<!-- FOOTER -->
 <footer class="nhom7-footer">
-    <p>Skincare Perfect © 2026</p>
+    <p>© 2026 <span>Skincare Perfect</span> — Bí quyết làn da hoàn hảo</p>
 </footer>
 
 <script src="/nhom7js/nhom7api.js"></script>

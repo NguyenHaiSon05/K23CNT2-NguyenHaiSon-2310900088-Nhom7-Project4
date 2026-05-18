@@ -1,872 +1,796 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+/* =====================================================
+   SKINCARE PERFECT – USER STYLE
+   Aesthetic: Luxury Editorial / Organic Soft
+   Font: Cormorant Garamond + DM Sans
+   Palette: Blush, Ivory, Deep Rose, Warm Nude
+===================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+:root {
+    --rose:       #e8547a;
+    --rose-dark:  #c43060;
+    --rose-light: #fdf0f4;
+    --rose-mid:   #f5c6d5;
+    --nude:       #f0e8e0;
+    --ivory:      #fdfaf7;
+    --text:       #2a1f1f;
+    --text-muted: #9a8080;
+    --border:     #ecddd5;
+    --white:      #ffffff;
+    --shadow-sm:  0 2px 12px rgba(200,80,100,0.08);
+    --shadow-md:  0 8px 32px rgba(200,80,100,0.12);
+    --shadow-lg:  0 20px 60px rgba(200,80,100,0.18);
+    --radius:     18px;
+    --radius-sm:  10px;
+    --transition: 0.3s cubic-bezier(.4,0,.2,1);
 }
 
-body{
-    font-family: Arial, sans-serif;
-    background: #f7f7f7;
-    color: #333;
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--ivory);
+    color: var(--text);
+    overflow-x: hidden;
 }
 
-/* ================= HEADER ================= */
+/* ── SCROLLBAR ── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--nude); }
+::-webkit-scrollbar-thumb { background: var(--rose-mid); border-radius: 6px; }
 
-.nhom7-header{
+/* =====================================================
+   HEADER
+===================================================== */
+.nhom7-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    padding: 20px 60px;
-
-    background: white;
-
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-
+    padding: 0 60px;
+    height: 72px;
+    background: rgba(253,250,247,0.92);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
     position: sticky;
     top: 0;
     z-index: 1000;
+    transition: var(--transition);
 }
 
-.nhom7-logo{
-    font-size: 40px;
-    font-weight: bold;
-    color: #ff5c8a;
+.nhom7-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--rose);
+    letter-spacing: -0.5px;
+    text-decoration: none;
 }
 
-.nhom7-nav{
+.nhom7-logo em {
+    font-style: italic;
+    color: var(--text);
+}
+
+.nhom7-nav {
     display: flex;
     align-items: center;
-    gap: 30px;
+    gap: 36px;
 }
 
-.nhom7-nav a{
+.nhom7-nav a {
     text-decoration: none;
-    color: #333;
-    font-size: 18px;
+    color: var(--text);
+    font-size: 14px;
     font-weight: 500;
-    transition: 0.3s;
+    letter-spacing: 0.3px;
+    position: relative;
+    transition: var(--transition);
 }
 
-.nhom7-nav a:hover{
-    color: #ff5c8a;
+.nhom7-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: -3px; left: 0;
+    width: 0; height: 1.5px;
+    background: var(--rose);
+    transition: var(--transition);
 }
 
-#nhom7-user-area{
+.nhom7-nav a:hover { color: var(--rose); }
+.nhom7-nav a:hover::after { width: 100%; }
+
+#nhom7-user-area {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-#nhom7-user-area span{
-    font-size: 17px;
-}
+#nhom7-user-area span { font-size: 14px; color: var(--text); }
 
-#nhom7-user-area button{
-    padding: 8px 14px;
-    border: none;
-    border-radius: 8px;
-    background: #ff5c8a;
+#nhom7-user-area button {
+    padding: 9px 22px;
+    border: 1.5px solid var(--rose);
+    border-radius: 30px;
+    background: var(--rose);
     color: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
     cursor: pointer;
-    transition: 0.3s;
+    transition: var(--transition);
+    letter-spacing: 0.3px;
 }
 
-#nhom7-user-area button:hover{
-    background: #ff2f6d;
+#nhom7-user-area button:hover {
+    background: var(--rose-dark);
+    border-color: var(--rose-dark);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 16px rgba(228,84,122,0.3);
 }
 
-/* ================= BANNER ================= */
+/* ── USER BOX ── */
+.nhom7-user-box { display: flex; align-items: center; gap: 10px; }
 
-.nhom7-banner{
-    background: linear-gradient(to right, #ffd6e2, #ffc1d3);
-    padding: 90px 20px;
-    text-align: center;
+.nhom7-user-icon {
+    width: 38px; height: 38px;
+    background: linear-gradient(135deg, var(--rose-mid), var(--rose));
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    color: white; font-size: 16px; font-weight: 700;
 }
 
-.nhom7-banner h1{
-    font-size: 64px;
-    margin-bottom: 15px;
+.nhom7-user-info { display: flex; flex-direction: column; }
+.nhom7-user-info span { font-size: 13px; font-weight: 600; color: var(--text); }
+.nhom7-user-info button {
+    border: none; background: none;
+    color: var(--text-muted); font-size: 12px;
+    cursor: pointer; text-align: left; padding: 0; margin-top: 1px;
+    transition: var(--transition);
+}
+.nhom7-user-info button:hover { color: var(--rose); }
+
+/* =====================================================
+   HOME TOP (BANNER AREA)
+===================================================== */
+.nhom7-home-top {
+    display: grid;
+    grid-template-columns: 260px 1fr 300px;
+    gap: 16px;
+    padding: 24px 40px;
 }
 
-.nhom7-banner p{
-    font-size: 24px;
-    color: #444;
-}
-
-/* ================= CONTAINER ================= */
-
-.nhom7-container{
-    padding: 60px;
-}
-
-.nhom7-container h2{
-    font-size: 42px;
-    margin-bottom: 40px;
-}
-
-/* ================= PRODUCT ================= */
-
-#nhom7-product-list{
-    display: flex;
-    gap: 30px;
-    flex-wrap: wrap;
-}
-
-.nhom7-product-card{
-    width: 300px;
-    background: white;
-    border-radius: 15px;
+/* ── CATEGORY BOX ── */
+.nhom7-category-box {
+    background: var(--white);
+    border-radius: var(--radius);
     overflow: hidden;
-
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-
-    transition: 0.3s;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
 }
 
-.nhom7-product-card:hover{
-    transform: translateY(-8px);
-}
-
-.nhom7-product-card img{
-    width: 100%;
-    height: 280px;
-    object-fit: cover;
-}
-
-.nhom7-product-card-content{
-    padding: 20px;
-}
-
-.nhom7-product-card h3{
-    margin-bottom: 15px;
-    font-size: 28px;
-}
-
-.nhom7-product-card p{
-    margin-bottom: 20px;
-    font-size: 22px;
-    color: #ff2f6d;
-    font-weight: bold;
-}
-
-.nhom7-product-card a{
-    display: inline-block;
-
-    padding: 10px 18px;
-
-    background: #ff5c8a;
+.nhom7-category-box h3 {
+    background: linear-gradient(135deg, var(--rose), var(--rose-dark));
     color: white;
-
-    border-radius: 8px;
-
-    text-decoration: none;
-
-    transition: 0.3s;
+    padding: 18px 20px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.3px;
 }
 
-.nhom7-product-card a:hover{
-    background: #ff2f6d;
-}
+.nhom7-category-box ul { list-style: none; }
 
-/* ================= DETAIL ================= */
-
-.nhom7-detail-container{
-    padding: 60px;
-}
-
-.nhom7-detail-card{
-    display: flex;
-    gap: 50px;
-
-    background: white;
-
-    padding: 40px;
-
-    border-radius: 20px;
-
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
-}
-
-.nhom7-detail-image img{
-    width: 450px;
-    height: 450px;
-    object-fit: cover;
-    border-radius: 15px;
-}
-
-.nhom7-detail-info{
-    flex: 1;
-}
-
-.nhom7-detail-info h1{
-    font-size: 52px;
-    margin-bottom: 25px;
-}
-
-.nhom7-detail-info p{
-    margin-bottom: 18px;
-    font-size: 22px;
-}
-
-.nhom7-detail-info button{
-    margin-top: 20px;
-
-    padding: 16px 28px;
-
-    border: none;
-
-    background: #ff5c8a;
-
-    color: white;
-
-    border-radius: 10px;
-
-    font-size: 18px;
-
+.nhom7-category-box li {
+    padding: 14px 20px;
+    border-bottom: 1px solid #f5eeea;
     cursor: pointer;
-
-    transition: 0.3s;
-}
-
-.nhom7-detail-info button:hover{
-    background: #ff2f6d;
-}
-
-/* ================= CART ================= */
-
-.nhom7-cart-card{
+    font-size: 14px;
+    color: var(--text);
+    font-weight: 400;
+    transition: var(--transition);
     display: flex;
     align-items: center;
-
-    gap: 25px;
-
-    background: white;
-
-    padding: 25px;
-
-    margin-bottom: 25px;
-
-    border-radius: 15px;
-
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    gap: 8px;
 }
 
-.nhom7-cart-card img{
-    width: 140px;
-    height: 140px;
+.nhom7-category-box li::before {
+    content: '–';
+    color: var(--rose-mid);
+    font-size: 12px;
+}
+
+.nhom7-category-box li:hover {
+    background: var(--rose-light);
+    color: var(--rose);
+    padding-left: 26px;
+}
+
+.nhom7-category-box li:last-child { border-bottom: none; }
+
+/* ── MAIN BANNER ── */
+.nhom7-main-banner { position: relative; overflow: hidden; border-radius: var(--radius); }
+
+.nhom7-main-banner img {
+    width: 100%; height: 480px;
     object-fit: cover;
-    border-radius: 10px;
+    border-radius: var(--radius);
+    transition: transform 0.8s ease;
+    display: block;
 }
 
-/* ================= AUTH ================= */
+.nhom7-main-banner:hover img { transform: scale(1.02); }
 
-.nhom7-auth-container{
-    height: 100vh;
+/* ── SIDE BANNER ── */
+.nhom7-side-banner {
+    display: flex; flex-direction: column; gap: 16px;
+}
 
+.nhom7-side-banner img {
+    width: 100%; height: 232px;
+    object-fit: cover;
+    border-radius: var(--radius);
+    transition: var(--transition);
+    display: block;
+}
+
+.nhom7-side-banner img:hover { transform: scale(1.02); }
+
+/* =====================================================
+   PRODUCT LIST SECTION
+===================================================== */
+.nhom7-container {
+    padding: 48px 40px 80px;
+}
+
+.nhom7-container h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 10px;
+    line-height: 1.1;
+}
+
+.nhom7-container h2 span {
+    color: var(--rose);
+    font-style: italic;
+}
+
+.nhom7-section-subtitle {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 36px;
+    letter-spacing: 0.3px;
+}
+
+#nhom7-product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 24px;
+    margin-top: 0;
+}
+
+/* =====================================================
+   PRODUCT CARD
+===================================================== */
+.nhom7-product-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border);
+    transition: var(--transition);
+    position: relative;
+    cursor: pointer;
+}
+
+.nhom7-product-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--rose-mid);
+}
+
+/* Image area */
+.nhom7-product-image {
+    position: relative;
+    height: 260px;
+    overflow: hidden;
+    background: var(--nude);
+}
+
+.nhom7-product-image img {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+    display: block;
+}
+
+.nhom7-product-card:hover .nhom7-product-image img {
+    transform: scale(1.08);
+}
+
+/* Sale badge */
+.nhom7-sale-badge {
+    position: absolute;
+    top: 14px; left: 14px;
+    background: linear-gradient(135deg, #ffb347, #e8821a);
+    color: white;
+    width: 50px; height: 50px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    box-shadow: 0 4px 12px rgba(232,130,26,0.4);
+}
+
+/* Quick add overlay */
+.nhom7-product-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(42,31,31,0.5) 0%, transparent 50%);
+    opacity: 0;
+    transition: var(--transition);
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+
+.nhom7-product-card:hover .nhom7-product-overlay { opacity: 1; }
+
+.nhom7-quick-view {
+    background: white;
+    color: var(--rose);
+    border: none;
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transform: translateY(10px);
+    transition: var(--transition);
+}
+
+.nhom7-product-card:hover .nhom7-quick-view { transform: translateY(0); }
+
+/* Product info */
+.nhom7-product-info {
+    padding: 18px 20px 20px;
+}
+
+.nhom7-brand {
+    font-size: 10px;
+    color: var(--text-muted);
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 6px;
+}
+
+.nhom7-product-info h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1.4;
+    margin-bottom: 12px;
+    min-height: 50px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.nhom7-price-box {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+.nhom7-price {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--rose);
+    letter-spacing: -0.3px;
+}
+
+.nhom7-old-price {
+    font-size: 13px;
+    color: var(--text-muted);
+    text-decoration: line-through;
+}
+
+.nhom7-freeship {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--rose);
+    letter-spacing: 0.5px;
+    background: var(--rose-light);
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+}
+
+.nhom7-product-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nhom7-sold {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.nhom7-product-bottom a {
+    width: 40px; height: 40px;
+    background: linear-gradient(135deg, var(--rose), var(--rose-dark));
+    color: white;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: 300;
+    line-height: 1;
+    transition: var(--transition);
+    box-shadow: 0 4px 12px rgba(228,84,122,0.35);
+}
+
+.nhom7-product-bottom a:hover {
+    transform: rotate(90deg) scale(1.1);
+    box-shadow: 0 6px 20px rgba(228,84,122,0.5);
+}
+
+/* =====================================================
+   PRODUCT DETAIL
+===================================================== */
+.nhom7-detail-container {
+    padding: 48px 60px 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.nhom7-detail-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    background: var(--white);
+    padding: 48px;
+    border-radius: 24px;
+    box-shadow: var(--shadow-md);
+    border: 1px solid var(--border);
+}
+
+.nhom7-detail-image img {
+    width: 100%; height: 460px;
+    object-fit: cover;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+}
+
+.nhom7-detail-info h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: var(--text);
+}
+
+.nhom7-detail-info p {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.8;
+    margin-bottom: 16px;
+}
+
+.nhom7-detail-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--rose);
+    margin: 20px 0;
+}
+
+.nhom7-detail-info button {
+    margin-top: 12px;
+    padding: 16px 40px;
+    border: none;
+    background: linear-gradient(135deg, var(--rose), var(--rose-dark));
+    color: white;
+    border-radius: 30px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 6px 24px rgba(228,84,122,0.35);
+    letter-spacing: 0.3px;
+}
+
+.nhom7-detail-info button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 32px rgba(228,84,122,0.5);
+}
+
+/* =====================================================
+   CART
+===================================================== */
+.nhom7-cart-item {
+    background: var(--white);
+    padding: 24px 28px;
+    border-radius: var(--radius);
+    margin-bottom: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+.nhom7-cart-item:hover { box-shadow: var(--shadow-md); }
+
+.nhom7-cart-left { display: flex; gap: 20px; align-items: center; }
+
+.nhom7-cart-left img {
+    width: 100px; height: 100px;
+    object-fit: cover;
+    border-radius: var(--radius-sm);
+    border: 1px solid var(--border);
+}
+
+.nhom7-cart-info h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.nhom7-cart-price {
+    color: var(--rose);
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.nhom7-quantity-box {
+    display: flex; align-items: center; gap: 14px;
+}
+
+.nhom7-quantity-box button {
+    width: 34px; height: 34px;
+    border: 1.5px solid var(--border);
+    border-radius: 50%;
+    background: transparent;
+    color: var(--text);
+    font-size: 18px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: var(--transition);
+}
+
+.nhom7-quantity-box button:hover {
+    background: var(--rose);
+    border-color: var(--rose);
+    color: white;
+}
+
+.nhom7-quantity-box span { font-size: 16px; font-weight: 600; min-width: 24px; text-align: center; }
+
+.nhom7-remove-btn {
+    background: transparent;
+    color: #dc2626;
+    border: 1.5px solid #fca5a5;
+    padding: 8px 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.nhom7-remove-btn:hover { background: #ef4444; color: white; border-color: #ef4444; }
+
+#nhom7-total-price {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--rose);
+    margin-top: 32px;
+}
+
+/* =====================================================
+   AUTH
+===================================================== */
+.nhom7-auth-container {
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-
-    background: linear-gradient(to right, #ffd6e2, #ffe8ef);
+    background: linear-gradient(135deg, var(--nude) 0%, var(--rose-light) 50%, #fce4ec 100%);
+    padding: 40px 20px;
 }
 
-.nhom7-auth-form{
+.nhom7-auth-form {
     width: 420px;
-
-    background: white;
-
-    padding: 45px;
-
-    border-radius: 20px;
-
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(16px);
+    padding: 48px 44px;
+    border-radius: 24px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(255,255,255,0.8);
 }
 
-.nhom7-auth-form h1{
-    margin-bottom: 35px;
+.nhom7-auth-form h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 700;
     text-align: center;
-    font-size: 48px;
+    margin-bottom: 8px;
+    color: var(--text);
 }
 
-.nhom7-auth-form input{
+.nhom7-auth-subtitle {
+    text-align: center;
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 32px;
+}
+
+.nhom7-auth-form input {
     width: 100%;
-
-    padding: 16px;
-
-    margin-bottom: 20px;
-
-    border: 1px solid #ddd;
-
-    border-radius: 10px;
-
-    font-size: 16px;
-}
-
-.nhom7-auth-form input:focus{
+    padding: 13px 16px;
+    margin-bottom: 14px;
+    border: 1.5px solid var(--border);
+    border-radius: var(--radius-sm);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    background: var(--ivory);
+    color: var(--text);
     outline: none;
-    border-color: #ff5c8a;
+    transition: var(--transition);
 }
 
-.nhom7-auth-form button{
+.nhom7-auth-form input:focus {
+    border-color: var(--rose);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(228,84,122,0.08);
+}
+
+.nhom7-auth-form input::placeholder { color: #bba8a8; }
+
+.nhom7-auth-form button {
     width: 100%;
-
-    padding: 16px;
-
+    padding: 15px;
     border: none;
-
-    background: #ff5c8a;
-
+    background: linear-gradient(135deg, var(--rose), var(--rose-dark));
     color: white;
-
-    font-size: 18px;
-
-    border-radius: 10px;
-
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 30px;
     cursor: pointer;
-
-    transition: 0.3s;
+    transition: var(--transition);
+    box-shadow: 0 6px 20px rgba(228,84,122,0.35);
+    letter-spacing: 0.3px;
+    margin-top: 6px;
 }
 
-.nhom7-auth-form button:hover{
-    background: #ff2f6d;
+.nhom7-auth-form button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(228,84,122,0.5);
 }
 
-.nhom7-auth-form p{
-    margin-top: 25px;
+.nhom7-auth-form p {
+    margin-top: 24px;
     text-align: center;
+    font-size: 13px;
+    color: var(--text-muted);
 }
 
-.nhom7-auth-form a{
-    color: #ff2f6d;
+.nhom7-auth-form a {
+    color: var(--rose);
     text-decoration: none;
+    font-weight: 600;
 }
 
-/* ================= FOOTER ================= */
+.nhom7-auth-form a:hover { color: var(--rose-dark); }
 
-.nhom7-footer{
-    background: white;
-
+/* =====================================================
+   FOOTER
+===================================================== */
+.nhom7-footer {
+    background: var(--text);
+    color: rgba(255,255,255,0.5);
     text-align: center;
-
-    padding: 30px;
-
-    margin-top: 70px;
-
-    font-size: 18px;
-
-    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
-}
-/* ================= USER BOX ================= */
-
-.nhom7-user-box{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.nhom7-user-icon{
-    font-size: 38px;
-    color: #ff5c8a;
-}
-
-.nhom7-user-info{
-    display: flex;
-    flex-direction: column;
-}
-
-.nhom7-user-info span{
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
-}
-
-.nhom7-user-info button{
-    border: none;
-    background: none;
-
-    color: #333;
-
-    font-size: 15px;
-
-    cursor: pointer;
-
-    text-align: left;
-
-    padding: 0;
-
-    margin-top: 3px;
-}
-
-.nhom7-user-info button:hover{
-    color: #ff5c8a;
-}
-/* ================= HOME TOP ================= */
-
-.nhom7-home-top{
-    display: flex;
-    gap: 20px;
-
-    padding: 30px 40px;
-}
-
-/* LEFT CATEGORY */
-
-.nhom7-category-box{
-    width: 280px;
-
-    background: white;
-
-    border-radius: 12px;
-
-    overflow: hidden;
-
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-}
-
-.nhom7-category-box h3{
-    background: #ff1493;
-
-    color: white;
-
-    padding: 18px;
-
-    font-size: 24px;
-}
-
-.nhom7-category-box ul{
-    list-style: none;
-}
-
-.nhom7-category-box li{
-    padding: 18px;
-
-    border-bottom: 1px solid #eee;
-
-    cursor: pointer;
-
-    transition: 0.3s;
-
-    font-size: 18px;
-}
-
-.nhom7-category-box li:hover{
-    background: #fff0f5;
-
-    color: #ff1493;
-}
-
-/* MAIN BANNER */
-
-.nhom7-main-banner{
-    flex: 1;
-}
-
-.nhom7-main-banner img{
-    width: 100%;
-
-    height: 500px;
-
-    object-fit: cover;
-
-    border-radius: 15px;
-}
-
-/* RIGHT ADS */
-
-.nhom7-side-banner{
-    width: 320px;
-
-    display: flex;
-    flex-direction: column;
-
-    gap: 20px;
-}
-
-.nhom7-side-banner img{
-    width: 100%;
-
-    height: 240px;
-
-    object-fit: cover;
-
-    border-radius: 15px;
-}
-
-#nhom7-product-list{
-    display:flex;
-    gap:25px;
-    flex-wrap:wrap;
-    margin-top:40px;
-}
-
-.nhom7-product-card{
-    width:260px;
-    background:white;
-    border-radius:18px;
-    overflow:hidden;
-    transition:0.3s;
-    box-shadow:0 4px 15px rgba(0,0,0,0.08);
-}
-
-.nhom7-product-card:hover{
-    transform:translateY(-8px);
-}
-
-.nhom7-product-image{
-    position:relative;
-    height:280px;
-    overflow:hidden;
-}
-
-.nhom7-product-image img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
-.nhom7-sale-badge{
-    position:absolute;
-    top:15px;
-    left:15px;
-
-    background:#ffcc00;
-    color:#333;
-
-    width:55px;
-    height:55px;
-
-    border-radius:50%;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-weight:bold;
-}
-
-.nhom7-product-info{
-    padding:20px;
-}
-
-.nhom7-brand{
-    font-size:13px;
-    color:#888;
-    font-weight:bold;
-    letter-spacing:1px;
-}
-
-.nhom7-product-info h3{
-    margin:10px 0;
-    font-size:24px;
-    line-height:1.4;
-    height:70px;
-}
-
-.nhom7-price-box{
-    margin:15px 0;
-}
-
-.nhom7-price{
-    color:#ff4f87;
-    font-size:32px;
-    font-weight:bold;
-}
-
-.nhom7-old-price{
-    margin-left:10px;
-    color:#999;
-    text-decoration:line-through;
-    font-size:18px;
-}
-
-.nhom7-freeship{
-    color:#ff00aa;
-    font-weight:bold;
-    margin-bottom:20px;
-}
-
-.nhom7-product-bottom{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-}
-
-.nhom7-sold{
-    font-size:14px;
-}
-
-.nhom7-product-bottom a{
-    width:45px;
-    height:45px;
-
-    background:#ff4f87;
-    color:white;
-
-    border-radius:50%;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    text-decoration:none;
-
-    font-size:32px;
-    font-weight:bold;
-
-    transition:0.3s;
-}
-
-.nhom7-product-bottom a:hover{
-    background:#ff0066;
-}
-
-.nhom7-cart-item{
-    background:white;
-    padding:25px;
-    border-radius:18px;
-    margin-bottom:25px;
-
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-
-    box-shadow:0 4px 15px rgba(0,0,0,0.08);
-}
-
-.nhom7-cart-left{
-    display:flex;
-    gap:25px;
-    align-items:center;
-}
-
-.nhom7-cart-left img{
-    width:130px;
-    height:130px;
-    object-fit:cover;
-    border-radius:15px;
-}
-
-.nhom7-cart-info h3{
-    font-size:24px;
-    margin-bottom:10px;
-}
-
-.nhom7-cart-price{
-    color:#ff4f87;
-    font-size:24px;
-    font-weight:bold;
-    margin-bottom:15px;
-}
-
-.nhom7-remove-btn{
-    background:red;
-    color:white;
-    border:none;
-    padding:10px 20px;
-    border-radius:8px;
-    cursor:pointer;
-}
-
-.nhom7-quantity-box{
-    display:flex;
-    align-items:center;
-    gap:20px;
-}
-
-.nhom7-quantity-box button{
-    width:40px;
-    height:40px;
-    border:none;
-    border-radius:50%;
-    background:#ff4f87;
-    color:white;
-    font-size:22px;
-    cursor:pointer;
-}
-
-.nhom7-quantity-box span{
-    font-size:22px;
-    font-weight:bold;
-}
-
-#nhom7-total-price{
-    font-size:32px;
-    font-weight:bold;
-    color:#ff4f87;
-    margin-top:40px;
-}
-/* ================= ADMIN ================= */
-
-.nhom7-admin-layout{
-    display:flex;
-    min-height:100vh;
-}
-
-.nhom7-admin-sidebar{
-    width:260px;
-    background:#ff4f87;
-    color:white;
-    padding:30px 20px;
-}
-
-.nhom7-admin-sidebar h2{
-    font-size:32px;
-    margin-bottom:40px;
-}
-
-.nhom7-admin-sidebar ul{
-    list-style:none;
-}
-
-.nhom7-admin-sidebar li{
-    padding:18px;
-    margin-bottom:10px;
-    border-radius:10px;
-    cursor:pointer;
-    transition:0.3s;
-}
-
-.nhom7-admin-sidebar li:hover{
-    background:rgba(255,255,255,0.2);
-}
-
-.nhom7-admin-main{
-    flex:1;
-    padding:40px;
-}
-
-.nhom7-admin-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-    margin-bottom:40px;
-}
-
-.nhom7-admin-top h1{
-    font-size:42px;
-}
-
-.nhom7-admin-top button{
-    padding:12px 22px;
-    border:none;
-    background:#ff4f87;
-    color:white;
-    border-radius:10px;
-    cursor:pointer;
-}
-
-.nhom7-admin-cards{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:25px;
-    margin-bottom:50px;
-}
-
-.nhom7-admin-card{
-    background:white;
-    padding:30px;
-    border-radius:18px;
-    box-shadow:0 4px 15px rgba(0,0,0,0.08);
-}
-
-.nhom7-admin-card h3{
-    font-size:42px;
-    color:#ff4f87;
-    margin-bottom:10px;
-}
-
-.nhom7-admin-card p{
-    font-size:18px;
-}
-
-.nhom7-admin-table{
-    background:white;
-    padding:30px;
-    border-radius:18px;
-    box-shadow:0 4px 15px rgba(0,0,0,0.08);
-}
-
-.nhom7-admin-table h2{
-    margin-bottom:25px;
-}
-
-.nhom7-admin-table table{
-    width:100%;
-    border-collapse:collapse;
-}
-
-.nhom7-admin-table th,
-.nhom7-admin-table td{
-    padding:16px;
-    border-bottom:1px solid #eee;
-    text-align:left;
-}
-
-.nhom7-edit-btn{
-    background:#4caf50;
-    color:white;
-    border:none;
-    padding:10px 18px;
-    border-radius:8px;
-    cursor:pointer;
-}
-
-.nhom7-delete-btn{
-    background:red;
-    color:white;
-    border:none;
-    padding:10px 18px;
-    border-radius:8px;
-    cursor:pointer;
-}
-.nhom7-admin-form{
-    background: white;
-    padding: 30px;
-    border-radius: 20px;
-    margin-bottom: 30px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-}
-
-.nhom7-admin-form h2{
-    margin-bottom: 20px;
-}
-
-.nhom7-admin-form input,
-.nhom7-admin-form textarea{
-
-    width: 100%;
-    padding: 14px;
-    margin-bottom: 15px;
-
-    border: 1px solid #ddd;
-    border-radius: 10px;
-
-    font-size: 15px;
-}
-
-.nhom7-admin-form textarea{
-    height: 120px;
-    resize: none;
-}
-
-.nhom7-admin-form button{
-
-    background: #ff4f8b;
-    color: white;
-
-    border: none;
-
-    padding: 14px 25px;
-
-    border-radius: 10px;
-
-    cursor: pointer;
-
-    font-size: 16px;
-    font-weight: bold;
-}
-
-.nhom7-admin-form button:hover{
-    background: #ff2f75;
-}
+    padding: 32px 40px;
+    font-size: 13px;
+    letter-spacing: 0.3px;
+}
+
+.nhom7-footer span { color: var(--rose); font-weight: 600; }
+
+/* =====================================================
+   BANNER (old, kept for compat)
+===================================================== */
+.nhom7-banner {
+    background: linear-gradient(135deg, var(--nude), var(--rose-light));
+    padding: 80px 60px;
+    text-align: center;
+}
+
+.nhom7-banner h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 56px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--text);
+}
+
+.nhom7-banner p { font-size: 18px; color: var(--text-muted); }
+
+/* =====================================================
+   UTILITIES
+===================================================== */
+.nhom7-container h2 { font-size: 36px; margin-bottom: 32px; }
+
+/* Entrance animation */
+@keyframes nhom7-fadein {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.nhom7-product-card {
+    animation: nhom7-fadein 0.5s ease both;
+}
+
+/* Stagger cards */
+.nhom7-product-card:nth-child(1)  { animation-delay: 0.05s; }
+.nhom7-product-card:nth-child(2)  { animation-delay: 0.10s; }
+.nhom7-product-card:nth-child(3)  { animation-delay: 0.15s; }
+.nhom7-product-card:nth-child(4)  { animation-delay: 0.20s; }
+.nhom7-product-card:nth-child(5)  { animation-delay: 0.25s; }
+.nhom7-product-card:nth-child(6)  { animation-delay: 0.30s; }
+.nhom7-product-card:nth-child(7)  { animation-delay: 0.35s; }
+.nhom7-product-card:nth-child(8)  { animation-delay: 0.40s; }
+.nhom7-product-card:nth-child(9)  { animation-delay: 0.45s; }
+.nhom7-product-card:nth-child(10) { animation-delay: 0.50s; }
+
+/* =====================================================
+   ADMIN (unchanged, kept for compat)
+===================================================== */
+.nhom7-admin-layout { display:flex; min-height:100vh; }
+.nhom7-admin-sidebar { width:260px; background:#ff4f87; color:white; padding:30px 20px; }
+.nhom7-admin-sidebar h2 { font-size:28px; margin-bottom:40px; }
+.nhom7-admin-sidebar ul { list-style:none; }
+.nhom7-admin-sidebar li { padding:16px; margin-bottom:8px; border-radius:10px; cursor:pointer; transition:0.3s; }
+.nhom7-admin-sidebar li:hover { background:rgba(255,255,255,0.2); }
+.nhom7-admin-main { flex:1; padding:40px; }
+.nhom7-admin-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:40px; }
+.nhom7-admin-top h1 { font-size:36px; }
+.nhom7-admin-top button { padding:12px 22px; border:none; background:#ff4f87; color:white; border-radius:10px; cursor:pointer; }
+.nhom7-admin-cards { display:grid; grid-template-columns:repeat(4,1fr); gap:25px; margin-bottom:50px; }
+.nhom7-admin-card { background:white; padding:30px; border-radius:18px; box-shadow:0 4px 15px rgba(0,0,0,0.08); }
+.nhom7-admin-card h3 { font-size:38px; color:#ff4f87; margin-bottom:10px; }
+.nhom7-admin-card p { font-size:16px; }
+.nhom7-admin-table { background:white; padding:30px; border-radius:18px; box-shadow:0 4px 15px rgba(0,0,0,0.08); }
+.nhom7-admin-table h2 { margin-bottom:25px; }
+.nhom7-admin-table table { width:100%; border-collapse:collapse; }
+.nhom7-admin-table th, .nhom7-admin-table td { padding:16px; border-bottom:1px solid #eee; text-align:left; }
+.nhom7-edit-btn { background:#4caf50; color:white; border:none; padding:8px 16px; border-radius:8px; cursor:pointer; }
+.nhom7-delete-btn { background:red; color:white; border:none; padding:8px 16px; border-radius:8px; cursor:pointer; }
+.nhom7-admin-form { background:white; padding:30px; border-radius:20px; margin-bottom:30px; box-shadow:0 2px 10px rgba(0,0,0,0.08); }
+.nhom7-admin-form h2 { margin-bottom:20px; }
+.nhom7-admin-form input, .nhom7-admin-form textarea { width:100%; padding:14px; margin-bottom:15px; border:1px solid #ddd; border-radius:10px; font-size:15px; }
+.nhom7-admin-form textarea { height:120px; resize:none; }
+.nhom7-admin-form button { background:#ff4f8b; color:white; border:none; padding:14px 25px; border-radius:10px; cursor:pointer; font-size:16px; font-weight:bold; }
+.nhom7-admin-form button:hover { background:#ff2f75; }

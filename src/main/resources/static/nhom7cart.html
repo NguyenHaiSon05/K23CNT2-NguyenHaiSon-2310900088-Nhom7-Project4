@@ -1,47 +1,106 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Giỏ hàng</title>
-
+    <title>Giỏ hàng – Skincare Perfect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/nhom7css/nhom7style.css">
+    <link rel="stylesheet" href="/nhom7css/nhom7cart.css">
 </head>
 <body>
 
+<!-- HEADER -->
 <header class="nhom7-header">
-
-    <div class="nhom7-logo">
-        Skincare Perfect
-    </div>
-
+    <div class="nhom7-logo">Skincare <em>Perfect</em></div>
     <nav class="nhom7-nav">
-
         <a href="/">Trang chủ</a>
-
-        <a href="#nhom7-product-list">
-            Sản phẩm
-        </a>
-        <a href="/nhom7cart.html">
-            Giỏ hàng
-        </a>
-
+        <a href="/">Sản phẩm</a>
+        <a href="/nhom7cart.html">Giỏ hàng</a>
         <div id="nhom7-user-area"></div>
-
     </nav>
-
 </header>
 
-<main class="nhom7-container">
-    <h1>Giỏ hàng</h1>
+<!-- BREADCRUMB -->
+<div class="nhom7-breadcrumb">
+    <a href="/">Trang chủ</a>
+    <span>›</span>
+    <span>Giỏ hàng</span>
+</div>
 
-    <div id="nhom7-cart-list"></div>
+<!-- MAIN -->
+<main class="nhom7-cart-page">
 
-    <h2 id="nhom7-total-price"></h2>
+    <!-- LEFT: CART ITEMS -->
+    <div class="nhom7-cart-main">
+
+        <div class="nhom7-cart-header">
+            <h1>Giỏ <em>hàng</em></h1>
+            <span class="nhom7-cart-count" id="nhom7-cart-count">0 sản phẩm</span>
+        </div>
+
+        <!-- ITEMS -->
+        <div id="nhom7-cart-list"></div>
+
+        <!-- CONTINUE SHOPPING -->
+        <a href="/" class="nhom7-cart-continue">
+            ← Tiếp tục mua sắm
+        </a>
+    </div>
+
+    <!-- RIGHT: ORDER SUMMARY -->
+    <aside class="nhom7-cart-summary">
+
+        <h3>Tóm tắt đơn hàng</h3>
+
+        <div class="nhom7-summary-rows">
+            <div class="nhom7-summary-row">
+                <span>Tạm tính</span>
+                <span id="nhom7-subtotal">0đ</span>
+            </div>
+            <div class="nhom7-summary-row">
+                <span>Phí vận chuyển</span>
+                <span id="nhom7-ship-fee" class="nhom7-free">Miễn phí</span>
+            </div>
+            <div class="nhom7-summary-row nhom7-summary-row--voucher">
+                <span>Mã giảm giá</span>
+                <div class="nhom7-voucher-input-wrap">
+                    <input type="text" id="nhom7-voucher-input" placeholder="Nhập mã...">
+                    <button onclick="nhom7ApplyVoucher()">Áp dụng</button>
+                </div>
+            </div>
+            <div class="nhom7-summary-row nhom7-summary-row--discount" id="nhom7-discount-row" style="display:none">
+                <span>Giảm giá</span>
+                <span id="nhom7-discount-amount" class="nhom7-discount-val">–0đ</span>
+            </div>
+        </div>
+
+        <div class="nhom7-summary-total">
+            <span>Tổng cộng</span>
+            <span id="nhom7-total-price">0đ</span>
+        </div>
+
+        <button class="nhom7-checkout-btn" onclick="nhom7Checkout()">
+            Đặt hàng ngay →
+        </button>
+
+        <div class="nhom7-summary-trust">
+            <span>🔒 Thanh toán bảo mật</span>
+            <span>↩ Đổi trả 7 ngày</span>
+            <span>🚚 Freeship từ 99K</span>
+        </div>
+
+    </aside>
+
 </main>
 
+<!-- TOAST -->
+<div class="nhom7-toast" id="nhom7-toast"></div>
+
+<!-- FOOTER -->
 <footer class="nhom7-footer">
-    <p>Skincare Perfect © 2026</p>
+    <p>© 2026 <span>Skincare Perfect</span> — Bí quyết làn da hoàn hảo</p>
 </footer>
 
 <script src="/nhom7js/nhom7cart.js"></script>

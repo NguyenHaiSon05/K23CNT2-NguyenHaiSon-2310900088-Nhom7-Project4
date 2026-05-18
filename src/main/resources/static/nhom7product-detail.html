@@ -1,46 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chi tiết sản phẩm</title>
+    <title>Chi tiết sản phẩm – Skincare Perfect</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/nhom7css/nhom7style.css">
+    <link rel="stylesheet" href="/nhom7css/nhom7detail.css">
 </head>
 <body>
 
+<!-- HEADER -->
 <header class="nhom7-header">
-
-    <div class="nhom7-logo">
-        Skincare Perfect
-    </div>
-
+    <div class="nhom7-logo">Skincare <em>Perfect</em></div>
     <nav class="nhom7-nav">
-
         <a href="/">Trang chủ</a>
-
-        <a href="#nhom7-product-list">
-            Sản phẩm
-        </a>
-        <a href="/nhom7cart.html">
-            Giỏ hàng
-        </a>
-
+        <a href="/">Sản phẩm</a>
+        <a href="/nhom7cart.html">Giỏ hàng</a>
         <div id="nhom7-user-area"></div>
-
     </nav>
-
 </header>
 
+<!-- BREADCRUMB -->
+<div class="nhom7-breadcrumb">
+    <a href="/">Trang chủ</a>
+    <span>›</span>
+    <a href="/">Sản phẩm</a>
+    <span>›</span>
+    <span id="nhom7-breadcrumb-name">Chi tiết</span>
+</div>
+
+<!-- MAIN DETAIL -->
 <main class="nhom7-detail-container">
-    <div id="nhom7-product-detail"></div>
+    <div id="nhom7-product-detail">
+        <!-- Loading skeleton -->
+        <div class="nhom7-detail-card nhom7-skeleton-wrap">
+            <div class="nhom7-skeleton nhom7-skeleton-img"></div>
+            <div class="nhom7-detail-info">
+                <div class="nhom7-skeleton nhom7-skeleton-line" style="width:60%;height:36px;margin-bottom:20px;"></div>
+                <div class="nhom7-skeleton nhom7-skeleton-line" style="width:40%;height:20px;margin-bottom:12px;"></div>
+                <div class="nhom7-skeleton nhom7-skeleton-line" style="width:90%;height:16px;margin-bottom:8px;"></div>
+                <div class="nhom7-skeleton nhom7-skeleton-line" style="width:80%;height:16px;margin-bottom:8px;"></div>
+                <div class="nhom7-skeleton nhom7-skeleton-line" style="width:50%;height:48px;margin-top:28px;border-radius:30px;"></div>
+            </div>
+        </div>
+    </div>
 </main>
 
+<!-- TOAST -->
+<div class="nhom7-toast" id="nhom7-toast"></div>
+
+<!-- FOOTER -->
 <footer class="nhom7-footer">
-    <p>Skincare Perfect © 2026</p>
+    <p>© 2026 <span>Skincare Perfect</span> — Bí quyết làn da hoàn hảo</p>
 </footer>
 
 <script src="/nhom7js/nhom7api.js"></script>
 <script src="/nhom7js/nhom7product-detail.js"></script>
+<script src="/nhom7js/nhom7auth.js"></script>
 
 </body>
 </html>

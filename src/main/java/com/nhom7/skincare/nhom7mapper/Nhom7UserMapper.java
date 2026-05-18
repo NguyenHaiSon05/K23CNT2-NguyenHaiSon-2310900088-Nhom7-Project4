@@ -13,6 +13,7 @@ public class Nhom7UserMapper {
                 .email(user.getEmail())
                 .phone(user.getPhone())
                 .address(user.getAddress())
+                // password KHÔNG map ra DTO (bảo mật)
                 .build();
     }
 
@@ -20,6 +21,7 @@ public class Nhom7UserMapper {
         return Nhom7User.builder()
                 .id(userDTO.getId())
                 .username(userDTO.getUsername())
+                .password(userDTO.getPassword()) // ← THÊM DÒNG NÀY
                 .fullName(userDTO.getFullName())
                 .email(userDTO.getEmail())
                 .phone(userDTO.getPhone())

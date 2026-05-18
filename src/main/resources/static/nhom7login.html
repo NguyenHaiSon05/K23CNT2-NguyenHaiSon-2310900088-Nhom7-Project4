@@ -4,13 +4,62 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Đăng nhập</title>
-
     <link rel="stylesheet" href="/nhom7css/nhom7style.css">
+    <style>
+        /* Wrapper bọc input + nút mắt */
+        .nhom7-password-wrapper {
+            position: relative;
+            width: 100%;
+            margin-bottom: 14px;
+        }
+
+        /* Input password không bị margin-bottom double */
+        .nhom7-password-wrapper input {
+            margin-bottom: 0 !important;
+            padding-right: 48px !important;
+            box-sizing: border-box;
+            width: 100%;
+        }
+
+        /* Reset HOÀN TOÀN nút mắt khỏi .nhom7-auth-form button */
+        .nhom7-toggle-pw {
+            all: unset !important;
+            position: absolute !important;
+            right: 14px !important;
+            top: 50% !important;
+            transform: translateY(-50%) !important;
+            width: 22px !important;
+            height: 22px !important;
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            cursor: pointer !important;
+            color: #bbb !important;
+            background: transparent !important;
+            border: none !important;
+            border-radius: 0 !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            box-shadow: none !important;
+            transition: color 0.2s ease !important;
+        }
+
+        .nhom7-toggle-pw:hover {
+            color: #e8547a !important;
+            transform: translateY(-50%) !important; /* giữ position khi hover */
+        }
+
+        .nhom7-toggle-pw svg {
+            width: 20px !important;
+            height: 20px !important;
+            display: block !important;
+            pointer-events: none;
+        }
+    </style>
 </head>
 <body>
 
 <div class="nhom7-auth-container">
-
     <form class="nhom7-auth-form">
 
         <h1>Đăng nhập</h1>
@@ -21,29 +70,53 @@
                 placeholder="Email"
         >
 
-        <input
-                type="password"
-                id="nhom7-password"
-                placeholder="Mật khẩu"
-        >
+        <!-- Wrapper chứa input password + nút mắt -->
+        <div class="nhom7-password-wrapper">
+            <input
+                    type="password"
+                    id="nhom7-password"
+                    placeholder="Mật khẩu"
+            >
+            <button
+                    type="button"
+                    class="nhom7-toggle-pw"
+                    onclick="togglePassword()"
+                    title="Hiện/Ẩn mật khẩu"
+            >
+                <!-- Mắt mở: đang ẩn password -->
+                <svg id="icon-eye"
+                     xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                    <circle cx="12" cy="12" r="3"/>
+                </svg>
+                <!-- Mắt gạch: đang hiện password -->
+                <svg id="icon-eye-off"
+                     xmlns="http://www.w3.org/2000/svg"
+                     viewBox="0 0 24 24" fill="none"
+                     stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round"
+                     style="display:none;">
+                    <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94"/>
+                    <path d="M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19"/>
+                    <line x1="1" y1="1" x2="23" y2="23"/>
+                </svg>
+            </button>
+        </div>
 
-        <button
-                type="button"
-                onclick="nhom7Login()"
-        >
+        <!-- Nút đăng nhập dùng class riêng để CSS chung vẫn áp dụng -->
+        <button type="button" onclick="nhom7Login()">
             Đăng nhập
         </button>
 
         <p>
             Chưa có tài khoản?
-
-            <a href="/nhom7register.html">
-                Đăng ký
-            </a>
+            <a href="/nhom7register.html">Đăng ký</a>
         </p>
 
     </form>
-
 </div>
 
 <script src="/nhom7js/nhom7api.js"></script>

@@ -16,4 +16,8 @@ public interface Nhom7UserService {
     Nhom7User updateUser(Long id, Nhom7User user);
 
     void deleteUser(Long id);
+
+    Nhom7User login(String email, String password);
+    boolean existsByEmail(String email);
+    boolean existsByUsername(String username);
 }
